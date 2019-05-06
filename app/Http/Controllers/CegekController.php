@@ -14,7 +14,9 @@ class CegekController extends Controller
      */
     public function index()
     {
-        //
+        $cegekOsszes = Cegek::all();
+
+        return view('cegek.index', compact('cegekOsszes'));
     }
 
     /**
