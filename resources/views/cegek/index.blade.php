@@ -4,7 +4,11 @@
     @include('inc.navbar', ['title' => 'Cégek listája', 'route' => 'cegek.index'])
 @endsection
 @section('content')
-
+  @if($errors->any())
+    <div class="alert alert-success col-lg-11 my-3 mx-auto" role="alert">
+    {{$errors->first()}}
+    </div>
+  @endif
 <table class="table table-hover mx-auto mt-3" >
         <thead>
           <tr>
@@ -42,5 +46,6 @@
                   {{$cegek->links()}}            
               </div>
       @endif
+     
       
 @endsection

@@ -58,7 +58,7 @@ class CegekController extends Controller
             ]
         );
         Cegek::create($cegData);
-        return redirect('cegek');
+        return redirect('cegek')->withErrors(['uzenet' => ['Sikeresen hozzáadva!']]);
     }
 
     /**
@@ -116,7 +116,7 @@ class CegekController extends Controller
         
         Cegek::where('id', $id)->update($cegData);
 
-        return redirect('cegek');
+        return redirect('cegek')->withErrors(['uzenet' => ['Sikeres módosítás!']]);
     }
 
     /**
@@ -127,6 +127,8 @@ class CegekController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cegek::where('id',$id)->delete();
+
+        return redirect('cegek')->withErrors(['uzenet' => ['Sikeres törlés!']]);
     }
 }

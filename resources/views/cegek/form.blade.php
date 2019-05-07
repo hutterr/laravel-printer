@@ -40,6 +40,6 @@
                 <small>{{$errors->first('kapcstel')}}</small>
               </div>
       </div>
-      <div class="row">
-          <button type="submit" class="btn btn-primary mx-auto">{{$felirat}}</button>                    
+      <div class="row justify-content-center">
+          <button type="submit" class="btn btn-primary col-lg-2">{{$felirat}}</button>                    
       </div>
