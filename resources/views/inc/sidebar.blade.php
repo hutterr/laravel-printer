@@ -39,7 +39,7 @@
              </span>                  
         </li>
         <li class="has-subnav">
-            <a href="/munkalapok">
+            <a href="{{route('nyomtatok.index')}}">
                <i class="fas fa-list"></i>
                 <span class="nav-text">
                    Nyomtatók listája

@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <div class="row justify-content-center mt-4">
-        <div class="col-md-11">
+   
+        <div class="col-md-11 mt-4 mx-auto">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -18,6 +18,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    
 
 @endsection

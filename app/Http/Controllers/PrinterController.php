@@ -15,7 +15,9 @@ class PrinterController extends Controller
      */
     public function index()
     {
-        
+        $nyomtatok = Printer::paginate(10);
+
+        return view('printer.index',compact('nyomtatok'));
     }
 
     /**
@@ -26,7 +28,8 @@ class PrinterController extends Controller
     public function create()
     {
         $cegek = Cegek::all();
-        return view('printer.create',compact('cegek'));
+        $printer = new Printer();
+        return view('printer.create',compact('cegek','printer'));
     }
 
     /**
@@ -37,7 +40,33 @@ class PrinterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $printerData = request()->validate(
+            [
+            'gepszam' => 'required|unique:printers,gepszam',
+            'gyszam' => 'required|unique:printers,gyszam',
+            'marka' => '',
+            'geptipus' => '',
+            'ceg_id' => 'required',
+            'hely' => '',
+            'elozohely' => '',
+            'telefon' => '',
+            'df' => '',
+            'duplex' => '',
+            'gepasztal' => '',
+            'egytalca' => '',
+            'kettotalca' => '',
+            'lct' => '',
+            'szorter' => '',
+            'nyomtato' => '',
+            'halo' => '',
+            'scan' => '',
+            'fax' => '',
+            'hdd' => '',
+            'beszer_ar' => '',           
+            ]
+        );
+        Printer::create($printerData);
+    
     }
 
     /**
@@ -46,9 +75,12 @@ class PrinterController extends Controller
      * @param  \App\Printer  $printer
      * @return \Illuminate\Http\Response
      */
-    public function show(Printer $printer)
+    public function show($id)
     {
-        //
+        $cegek = Cegek::all();
+        $printer  = Printer::find(1)->first();
+        
+        return view('printer.show', compact('printer','cegek'));
     }
 
     /**
@@ -69,9 +101,34 @@ class PrinterController extends Controller
      * @param  \App\Printer  $printer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Printer $printer)
+    public function update(Request $request, $id)
     {
-        //
+        $printerData = request()->validate(
+            [
+            'marka' => '',
+            'geptipus' => '',
+            'ceg_id' => 'required',
+            'hely' => '',
+            'elozohely' => '',
+            'telefon' => '',
+            'df' => '',
+            'duplex' => '',
+            'gepasztal' => '',
+            'egytalca' => '',
+            'kettotalca' => '',
+            'lct' => '',
+            'szorter' => '',
+            'nyomtato' => '',
+            'halo' => '',
+            'scan' => '',
+            'fax' => '',
+            'hdd' => '',
+            'beszer_ar' => '',           
+            ]
+        );
+       Printer::where('id',$id)->update($printerData);
+       
+       return redirect('nyomtatok')->withErrors(['uzenet' => ['Sikeresen módosítva!']]);
     }
 
     /**

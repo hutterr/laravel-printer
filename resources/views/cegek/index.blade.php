@@ -6,7 +6,7 @@
 @section('content')
   @if($errors->any())
     <div class="alert alert-success col-lg-11 my-3 mx-auto" role="alert">
-    {{$errors->first()}}
+    {{$errors->first('uzenet')}}
     </div>
   @endif
 <table class="table table-hover mx-auto mt-3" >
