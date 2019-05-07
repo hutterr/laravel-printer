@@ -17,6 +17,7 @@
             <th class="text-center" scope="col">Típus</th>
             <th class="text-center"scope="col">Hely</th>
             <th class="text-center" scope="col">Cég</th>
+            <th class="text-center" scope="col"></th>
             
           
           </tr>
@@ -29,11 +30,12 @@
           @else
               @foreach($nyomtatok as $nyomtato)       
               <tr>             
-                <td class="align-middle text-center"><a class="button-list" href="\nyomtatok\{{$nyomtato->id}}">{{$nyomtato->gepszam}}</a></td>
+                <td class="align-middle text-center"><a class="button-list" href="\nyomtatok\{{$nyomtato->id}}\edit">{{$nyomtato->gepszam}}</a></td>
                 <td class="align-middle text-center">{{$nyomtato->marka}}</td>
                 <td class="align-middle text-center">{{$nyomtato->geptipus}}</td>
                 <td class="align-middle text-center">{{$nyomtato->hely}}</td>
-                <td class="align-middle text-center">{{$nyomtato->ceg->cegnev}}</td>            
+                <td class="align-middle text-center">{{$nyomtato->ceg->cegnev}}</td>  
+                <td class="align-middle text-center"><a class="button-list" href="\nyomtatok\{{$nyomtato->id}}">Részletek</a></td>            
               </tr>
               @endforeach
           @endif

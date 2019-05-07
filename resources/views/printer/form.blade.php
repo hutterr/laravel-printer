@@ -13,7 +13,7 @@
         </div>
         </div>
         <div class="form-group row">
-            <label for="marka" class="col-sm-2 col-form-label ">Gépszám</label>
+            <label for="marka" class="col-sm-2 col-form-label ">Márka</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="marka" name="marka" value="{{old('marka')  ?? $printer->marka}}">
                 <small>{{$errors->first('marka')}}</small>

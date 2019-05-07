@@ -66,7 +66,7 @@ class PrinterController extends Controller
             ]
         );
         Printer::create($printerData);
-    
+        return redirect('nyomtatok')->withErrors(['uzenet' => ['Sikeresen hozzáadva!']]);
     }
 
     /**
@@ -77,10 +77,9 @@ class PrinterController extends Controller
      */
     public function show($id)
     {
-        $cegek = Cegek::all();
-        $printer  = Printer::find(1)->first();
-        
-        return view('printer.show', compact('printer','cegek'));
+       $printer = Printer::where('id',$id)->first();
+
+       return view('printer.details',compact('printer'));
     }
 
     /**
@@ -89,9 +88,12 @@ class PrinterController extends Controller
      * @param  \App\Printer  $printer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Printer $printer)
+    public function edit($id)
     {
-        //
+        $cegek = Cegek::all();
+        $printer  = Printer::where('id',$id)->first();
+        
+        return view('printer.show', compact('printer','cegek'));
     }
 
     /**
