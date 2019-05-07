@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row justify-content-center mt-4">
-        <div class="col-md-12">
+        <div class="col-md-11">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 

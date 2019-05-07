@@ -12,9 +12,9 @@
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 
 .content {
-    margin-left: 100px;
-    margin-right: 40px;
+    margin-left: 60px;
 }
+//Sidebar
 .fa-2x {
     font-size: 24px;
 }
@@ -34,10 +34,9 @@ nav.main-menu.expanded {
     width: 250px;
     overflow: visible;
 }
-
 .main-menu {
     background: #212121;
-    border-right: 1px solid #e5e5e5;
+
     position: absolute;
     top: 0;
     bottom: 0;
@@ -153,4 +152,30 @@ nav.main-menu li.active > a,
 .info {
     border-bottom: 2px solid #999;
     border-top: 2px solid #999;
+}
+//Navbar
+
+//End of navbar
+
+.button-list {
+    color: black;
+    padding: 5px;
+    border-radius: 2px;
+    font-weight: bolder;
+}
+.button-list:hover {
+    color: grey;
+}
+.table,
+.paginate {
+    width: 90%;
+}
+small {
+    color: red;
+}
+.fail {
+    border: 1px solid red;
+}
+strong {
+    color: white;
 }

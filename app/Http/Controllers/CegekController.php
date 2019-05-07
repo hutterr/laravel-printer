@@ -13,10 +13,10 @@ class CegekController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
+    {   
+        $cegek = Cegek::paginate(10);
 
-        return view('cegek.index');
+        return view('cegek.index', compact('cegek'));
     }
 
     /**
@@ -26,7 +26,8 @@ class CegekController extends Controller
      */
     public function create()
     {
-        //
+        $ceg = new Cegek();
+        return view('cegek.create', compact('ceg'));
     }
 
     /**
@@ -48,7 +49,9 @@ class CegekController extends Controller
      */
     public function show($id)
     {
-        //
+        $ceg = Cegek::where('id', $id)->first();
+        
+        return view('cegek.details',compact('ceg'));
     }
 
     /**
@@ -58,8 +61,8 @@ class CegekController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        
     }
 
     /**
@@ -71,7 +74,29 @@ class CegekController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $cegData = request()->validate(
+            [
+            'cegnev' => 'required',
+            'adoszam' => 'required|min:11',
+            'cim' => 'required',
+            'telefonszam' => '',
+            'kapcsolattarto' => '',
+            'kapcstel' => '',           
+            ],
+            [
+                'cegnev.required' => 'A cégnév mező kötelezően kitöltendő!',
+                'adoszam.required' => 'Az adószám mező kötelezően kitöltendő!',
+                'adoszam.min' => 'Az adószámnak legalább 11 karakternek kell lennie!',
+                'cim.required' => 'A cím kötelezően kitöltendő mező!'
+            ]
+        );
+        
+       
+        
+        Cegek::where('id', $id)->update($cegData);
+
+        return redirect('cegek');
     }
 
     /**

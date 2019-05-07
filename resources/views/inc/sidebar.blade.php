@@ -1,5 +1,4 @@
-<nav class="main-menu">  
-            
+<nav class="main-menu">              
     <ul>
         <li>
             <a href="/home">

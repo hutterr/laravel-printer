@@ -23,7 +23,11 @@
     @include('inc.sidebar')
         
     <div class="content">
-            @yield('content')
+       @yield('nav')
+            <div class="main-area">
+                @yield('content')
+
+            </div>
     </div>
 </body>
 </html>
