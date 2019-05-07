@@ -47,7 +47,7 @@
             </a>           
         </li>
         <li class="has-subnav">
-        <a href="">
+        <a href="{{route('nyomtatok.create')}}">
                <i class="fas fa-plus"></i>
                 <span class="nav-text">
                     Új nyomtató felvétele

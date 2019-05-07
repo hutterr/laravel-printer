@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Printer;
+use App\Cegek;
 use Illuminate\Http\Request;
 
 class PrinterController extends Controller
@@ -24,7 +25,8 @@ class PrinterController extends Controller
      */
     public function create()
     {
-        //
+        $cegek = Cegek::all();
+        return view('printer.create',compact('cegek'));
     }
 
     /**
