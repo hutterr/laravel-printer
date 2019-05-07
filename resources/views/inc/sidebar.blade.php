@@ -4,7 +4,7 @@
             <a href="/home">
                 <i class="fa fa-home fa-2x"></i>
                 <span class="nav-text">
-                   Kezdőlap
+                   <strong>Kezdőlap</strong>
                 </span>
             </a>          
         </li>       
