@@ -10,9 +10,15 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
-.fa-2x {
-    font-size: 2em;
+
+.content {
+    margin-left: 100px;
+    margin-right: 40px;
 }
+.fa-2x {
+    font-size: 24px;
+}
+
 .fa,
 .fas {
     position: relative;
@@ -21,7 +27,6 @@
     height: 36px;
     text-align: center;
     vertical-align: middle;
-    font-size: 20px;
 }
 
 .main-menu:hover,
@@ -57,6 +62,7 @@ nav.main-menu.expanded {
 }
 
 .main-menu li > a,
+.info,
 .user-info {
     position: relative;
     display: table;
@@ -135,12 +141,6 @@ nav.main-menu li.active > a,
     color: #fff;
     background-color: #5fa2db;
 }
-.area {
-    float: left;
-    background: #e2e2e2;
-    width: 100%;
-    height: 100%;
-}
 @font-face {
     font-family: "Titillium Web";
     font-style: normal;
@@ -149,6 +149,8 @@ nav.main-menu li.active > a,
         url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff)
             format("woff");
 }
-.content {
-    margin-left: 60px;
+
+.info {
+    border-bottom: 2px solid #999;
+    border-top: 2px solid #999;
 }

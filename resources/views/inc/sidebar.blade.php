@@ -10,23 +10,51 @@
             </a>          
         </li>       
         @guest
-        @else        
+        @else   
+        <li class="info">           
+               <i class="fas fa-building fa-2x"></i>
+                <span class="nav-text">                   
+                        <strong>Cégek</strong>                    
+                </span>                     
+        </li>    
+        <li class="has-subnav">
+            <a href="{{route('cegek.index')}}">
+               <i class="fas fa-list fa-x"></i>
+                <span class="nav-text">
+                   Listázás
+                </span>
+            </a>           
+        </li>
+        <li class="has-subnav">
+        <a href="">
+               <i class="fas fa-plus"></i>
+                <span class="nav-text">
+                    Új cég felvétele
+                </span>
+            </a>           
+        </li>
+        <li class="info">           
+            <i class="fas fa-print fa-2x"></i>
+             <span class="nav-text">
+               <strong>Nyomtatók</strong>
+             </span>                  
+        </li>
         <li class="has-subnav">
             <a href="/munkalapok">
-               <i class="fas fa-clipboard-list fa-2x"></i>
+               <i class="fas fa-list"></i>
                 <span class="nav-text">
-                    Munkalapok
+                   Nyomtatók listája
                 </span>
             </a>           
         </li>
         <li class="has-subnav">
-        <a href="{{ route('munkalapok.create')}}">
-               <i class="fas fa-plus fa-2x"></i>
+        <a href="">
+               <i class="fas fa-plus"></i>
                 <span class="nav-text">
-                    Új munka felvétele
+                    Új nyomtató felvétele
                 </span>
             </a>           
-        </li>
+        </li>    
         
         @endguest
         
