@@ -14,8 +14,9 @@ class CegekController extends Controller
      */
     public function index()
     {   
-        $cegek = Cegek::paginate(10);
+        $cegek = Cegek::find(1);
 
+        dd($cegek->printer);
         return view('cegek.index', compact('cegek'));
     }
 

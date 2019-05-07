@@ -15,7 +15,7 @@ class PrinterController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
