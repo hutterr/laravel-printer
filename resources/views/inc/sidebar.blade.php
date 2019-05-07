@@ -25,7 +25,7 @@
             </a>           
         </li>
         <li class="has-subnav">
-        <a href="">
+        <a href="{{route('cegek.create')}}">
                <i class="fas fa-plus"></i>
                 <span class="nav-text">
                     Új cég felvétele

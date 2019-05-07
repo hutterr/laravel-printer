@@ -33,10 +33,10 @@
 nav.main-menu.expanded {
     width: 250px;
     overflow: visible;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
 .main-menu {
     background: #212121;
-
     position: absolute;
     top: 0;
     bottom: 0;

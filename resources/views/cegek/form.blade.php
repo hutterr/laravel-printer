@@ -41,5 +41,5 @@
               </div>
       </div>
       <div class="row">
-          <button type="submit" class="btn btn-primary mx-auto">Módosítás</button>                    
+          <button type="submit" class="btn btn-primary mx-auto">{{$felirat}}</button>                    
       </div>

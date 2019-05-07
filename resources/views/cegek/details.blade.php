@@ -17,7 +17,7 @@
         <div class="card-body">
             <form class="col-lg-11" action="/cegek/{{$ceg->id}}" method="POST">
                 @method('patch')
-                @include('cegek.form')
+                @include('cegek.form', ['felirat' => 'Módosítás'])
                 @csrf
               </form>         
         
