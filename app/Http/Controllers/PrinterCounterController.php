@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PrinterCounter;
+use App\Printer;
 use Illuminate\Http\Request;
 
 class PrinterCounterController extends Controller
@@ -24,7 +25,8 @@ class PrinterCounterController extends Controller
      */
     public function create()
     {
-        //
+        $nyomtatok = Printer::all();
+        return view('counter.create', compact('nyomtatok'));
     }
 
     /**

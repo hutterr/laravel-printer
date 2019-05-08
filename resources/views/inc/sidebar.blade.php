@@ -54,6 +54,21 @@
                 </span>
             </a>           
         </li>    
+        <li class="info">           
+                <i class="fas fa-clipboard-list fa-2x"></i>
+                 <span class="nav-text">
+                   <strong>Számlálók</strong>
+                 </span>                  
+            </li>
+            
+            <li class="has-subnav">
+            <a href="{{route('szamlalo.create')}}">
+                   <i class="fas fa-file-medical"></i>
+                    <span class="nav-text">
+                        Új számláló rögzítése
+                    </span>
+                </a>           
+            </li>    
         
         @endguest
         
