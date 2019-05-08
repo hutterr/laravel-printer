@@ -15,7 +15,7 @@ class RepairCounterController extends Controller
      */
     public function index()
     {
-        //
+        return view('repair.index');
     }
 
     /**
@@ -37,7 +37,19 @@ class RepairCounterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $repairData = request()->validate(
+            [
+                'printer_id' => 'required',
+                'fekete' => 'required',
+                'szines' => '',
+                'datum' => 'required',
+                'megjegyzes' => 'required',
+                'technikus' => 'required'          
+            ]
+        );
+        RepairCounter::create($repairData);
+
+        return redirect('javitasok')->withErrors(['uzenet' => ['Sikeresen hozzáadva!']]);
     }
 
     /**
