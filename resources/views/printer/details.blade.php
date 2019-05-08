@@ -93,13 +93,7 @@
                                                 <small>{{$errors->first('hely')}}</small>
                                             </div>
                                     </div>
-                                    <div class="form-group row">
-                                            <label for="elozohely" class="col-sm-4 col-form-label ">Előző helye</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="elozohely" name="elozohely" value="{{$printer->elozohely}}" readonly>
-                                                <small>{{$errors->first('elozohely')}}</small>
-                                            </div>
-                                    </div>
+
                                     <div class="form-group row">
                                             <label for="telefon" class="col-sm-4 col-form-label ">Hely telefon</label>
                                             <div class="col-sm-8">

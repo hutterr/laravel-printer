@@ -81,11 +81,11 @@ class PrinterController extends Controller
     {
        $cegek = Cegek::all();
        $printer = Printer::where('id',$id)->firstOrFail();
-       $szamlalok = Printer::find($id)->szamlalo()->paginate(5);
-       $szamlalo = Printer::find($id)->szamlalo()->orderBy('created_at','asc')->take(10)->get();
+       $szamlalok = Printer::find($id)->szamlalo()->orderBy('created_at','desc')->paginate(6);
+       $szamlalo = Printer::find($id)->szamlalo()->orderBy('created_at','asc')->take(12)->get();
 
        $datum = $szamlalo->map(function($szamlalo){
-           return $szamlalo->bejelentesi_datum;
+           return date('Y/m/d', strtotime($szamlalo->bejelentesi_datum));
        });
 
        $fekete = $szamlalo->map(function($szamlalo){
@@ -128,15 +128,15 @@ class PrinterController extends Controller
        $feketeChart->labels($datum);
        $feketeChart->dataset('Fekete', 'line', $fekete)->options([
         'color' => 'black',
-        'backgroundColor' => 'black',
-        'fill' => 'false']);
+        'backgroundColor' => 'grey'
+        ]);
        $szinesChart = new CounterChart;
        $szinesChart->height(200);
        $szinesChart->labels($datum);
        $szinesChart->dataset('Színes', 'line', $szines)->options([
         'color' => '#00CED1',
         'backgroundColor' => '#00CED1',
-        'fill' => 'false'
+        
         ]);
 
        return view('printer.details',compact('printer','cegek','szamlalok','feketeChart','szinesChart','atlagFekete','atlagSzines'));
