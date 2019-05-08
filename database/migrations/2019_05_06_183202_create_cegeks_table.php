@@ -18,9 +18,9 @@ class CreateCegeksTable extends Migration
             $table->string('cegnev');
             $table->bigInteger('adoszam');
             $table->string('cim');
-            $table->string('telefon');
-            $table->string('kapcsolattarto');
-            $table->string('kapcstel');
+            $table->string('telefon')->nullable($value = true);
+            $table->string('kapcsolattarto')->nullable($value = true);
+            $table->string('kapcstel')->nullable($value = true);
             $table->timestamps();
         });
     }
