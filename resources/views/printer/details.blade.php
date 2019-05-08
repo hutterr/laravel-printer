@@ -127,7 +127,7 @@
                         <tbody>
                             @if(count($szamlalok) == 0)
                             <tr>
-                                    <th scope="row" colspan="7" class="text-center">Nincsenek számlálók!</th>             
+                                    <th scope="row" colspan="3" class="text-center">Nincsenek számlálók!</th>             
                             </tr>
                             @else
                                 @foreach($szamlalok as $szamlalo)       
@@ -155,7 +155,41 @@
                             <h5 class="text-center">Javítások táblázat</h5>
                     </div>
                     <div class="card-body">
-                            
+                            <table class="table table-hover mx-auto mt-3" >
+                                    <thead>
+                                        <tr>
+                                        <th class="text-center" scope="col">Dátum</th>
+                                        <th class="text-center" scope="col">Fekete</th>
+                                        <th class="text-center" scope="col">Színes</th>
+                                        <th class="text-center" scope="col">Technikus</th>
+                                        <th class="text-center" scope="col"></th>
+                                        
+                                        
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if(count($javitasok) == 0)
+                                        <tr>
+                                                <th scope="row" colspan="5" class="text-center">Nincsenek javítások!</th>             
+                                        </tr>
+                                        @else
+                                            @foreach($javitasok as $javitas)       
+                                            <tr>             
+                                                <td class="align-middle text-center">{{$javitas->created_at->format('Y/m/d')}}</td>
+                                                <td class="align-middle text-center">{{$javitas->fekete}}</td>
+                                                <td class="align-middle text-center">{{$javitas->szines}}</td>
+                                                <td class="align-middle text-center">{{$javitas->technikus}}</td>      
+                                                <td class="align-middle text-center"><a href="/javitasok/{{$javitas->id}}"></a>Részletek</td>                                           
+                                            </tr>
+                                            @endforeach
+                                        @endif
+                                    </tbody>
+                                    </table> 
+                                    @if(count($javitasok) > 0)
+                                    <div class="paginate mx-auto mt-2" >
+                                        {{$javitasok->links()}}            
+                                    </div>
+                                @endif    
                     </div>
                 </div>
         </div>

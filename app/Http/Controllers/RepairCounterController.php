@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\RepairCounter;
+use App\Printer;
 use Illuminate\Http\Request;
 
 class RepairCounterController extends Controller
@@ -23,8 +24,9 @@ class RepairCounterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $nyomtatok = Printer::all();
+        return view('repair.create', compact('nyomtatok'));
     }
 
     /**

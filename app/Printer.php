@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Cegek;
 use App\PrinterCounter;
+use App\RepairCounter;
 
 class Printer extends Model
 {
@@ -17,5 +18,9 @@ class Printer extends Model
     public function szamlalo()
     {
         return $this->hasMany(PrinterCounter::class, 'printer_id', 'id');
+    }
+    public function javitasok()
+    {
+        return $this->hasMany(RepairCounter::class, 'printer_id', 'id');
     }
 }

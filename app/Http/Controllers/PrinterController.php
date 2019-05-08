@@ -83,6 +83,8 @@ class PrinterController extends Controller
        $printer = Printer::where('id',$id)->firstOrFail();
        $szamlalok = Printer::find($id)->szamlalo()->orderBy('created_at','desc')->paginate(6);
        $szamlalo = Printer::find($id)->szamlalo()->orderBy('created_at','asc')->take(12)->get();
+       //$javitasok = Printer::find($id)->javitasok()->orderBy('created_at','desc')->paginate(6);
+       $javitasok = array();
 
        $datum = $szamlalo->map(function($szamlalo){
            return date('Y/m/d', strtotime($szamlalo->bejelentesi_datum));
@@ -139,7 +141,7 @@ class PrinterController extends Controller
         
         ]);
 
-       return view('printer.details',compact('printer','cegek','szamlalok','feketeChart','szinesChart','atlagFekete','atlagSzines'));
+       return view('printer.details',compact('printer','cegek','szamlalok','feketeChart','szinesChart','atlagFekete','atlagSzines','javitasok'));
     }
 
     /**
