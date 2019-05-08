@@ -18,7 +18,7 @@ class CreatePrinterCountersTable extends Migration
             $table->unsignedInteger('printer_id');
             $table->integer('fekete');
             $table->integer('szines')->nullable($value = true);
-            $table->date('bejelentesi_datum')->nullable($value = true);
+            $table->timestamps('bejelentesi_datum')->nullable($value = true);
             $table->timestamps();
         });
     }

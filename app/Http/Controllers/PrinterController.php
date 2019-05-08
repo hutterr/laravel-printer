@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Printer;
 use App\Cegek;
+use App\PrinterCounter;
+use App\Charts\CounterChart;
 use Illuminate\Http\Request;
 
 class PrinterController extends Controller
@@ -77,9 +79,67 @@ class PrinterController extends Controller
      */
     public function show($id)
     {
-       $printer = Printer::where('id',$id)->first();
+       $cegek = Cegek::all();
+       $printer = Printer::where('id',$id)->firstOrFail();
+       $szamlalok = Printer::find($id)->szamlalo()->paginate(5);
+       $szamlalo = Printer::find($id)->szamlalo()->orderBy('created_at','asc')->take(10)->get();
 
-       return view('printer.details',compact('printer'));
+       $datum = $szamlalo->map(function($szamlalo){
+           return $szamlalo->bejelentesi_datum;
+       });
+
+       $fekete = $szamlalo->map(function($szamlalo){
+        return $szamlalo->fekete;
+        }); 
+
+        $szines = $szamlalo->map(function($szamlalo){
+            return $szamlalo->szines;
+         }); 
+
+        $maxFekete=0;
+        $dbFekete=0;
+    
+        foreach ($fekete as $szam) {            
+            
+            if($szam > $maxFekete){
+                $maxFekete = $szam;
+            }
+            $dbFekete++;
+        }
+
+        $maxSzines=0;
+        $dbSzines=0;
+    
+        foreach ($szines as $szin) {            
+            
+            if($szin > $maxSzines){
+                $maxSzines = $szin;
+            }
+            $dbSzines++;
+        }
+
+
+        
+       $atlagFekete = intval($maxFekete/$dbFekete);
+       $atlagSzines = intval($maxSzines/$dbSzines);
+
+       $feketeChart = new CounterChart;
+       $feketeChart->height(200);
+       $feketeChart->labels($datum);
+       $feketeChart->dataset('Fekete', 'line', $fekete)->options([
+        'color' => 'black',
+        'backgroundColor' => 'black',
+        'fill' => 'false']);
+       $szinesChart = new CounterChart;
+       $szinesChart->height(200);
+       $szinesChart->labels($datum);
+       $szinesChart->dataset('Színes', 'line', $szines)->options([
+        'color' => '#00CED1',
+        'backgroundColor' => '#00CED1',
+        'fill' => 'false'
+        ]);
+
+       return view('printer.details',compact('printer','cegek','szamlalok','feketeChart','szinesChart','atlagFekete','atlagSzines'));
     }
 
     /**

@@ -10693,7 +10693,7 @@ nav.main-menu.expanded {
 
 .main-menu {
   background: #212121;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   height: 100%;
