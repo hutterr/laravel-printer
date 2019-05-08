@@ -15,7 +15,7 @@ class PrinterCounterController extends Controller
      */
     public function index()
     {
-        //
+        return view('counter.index');
     }
 
     /**
@@ -37,7 +37,17 @@ class PrinterCounterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $counterData = request()->validate(
+            [
+                'printer_id' => 'required',
+                'fekete' => 'required',
+                'szines' => '',
+                'bejelentesi_datum' => ''          
+            ]
+        );
+        PrinterCounter::create($counterData);
+
+        return redirect('szamlalo')->withErrors(['uzenet' => ['Sikeresen hozzáadva!']]);
     }
 
     /**

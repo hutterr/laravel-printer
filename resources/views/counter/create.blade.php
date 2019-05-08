@@ -36,9 +36,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                                <label for="ceg" class="col-sm-2 col-form-label ">Gépszám</label>
+                                <label for="printer_id" class="col-sm-2 col-form-label ">Gépszám</label>
                                 <div class="col-sm-10">
-                                        <select class="form-control" id="ceg" name="ceg_id">
+                                        <select class="form-control" id="printer_id" name="printer_id">
                                             @if($nyomtatok->count() == 0){
                                                 <option disabled>Még nincsenek nyomtatok...</option>
                                             }
