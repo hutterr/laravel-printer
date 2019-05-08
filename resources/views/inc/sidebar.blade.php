@@ -69,6 +69,21 @@
                     </span>
                 </a>           
             </li>    
+            <li class="info">           
+                    <i class="fas fa-tools fa-2x"></i>
+                     <span class="nav-text">
+                       <strong>Javítások</strong>
+                     </span>                  
+                </li>
+                
+                <li class="has-subnav">
+                <a href="{{route('javitasok.create')}}">
+                       <i class="fas fa-screwdriver"></i>
+                        <span class="nav-text">
+                            Új javítás rögzítése
+                        </span>
+                    </a>           
+                </li>    
         
         @endguest
         

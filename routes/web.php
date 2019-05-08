@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('cegek','CegekController')->middleware('auth');
 Route::resource('nyomtatok','PrinterController')->middleware('auth');
 Route::resource('szamlalo','PrinterCounterController')->middleware('auth');
+Route::resource('javitasok','PrinterCounterController')->middleware('auth');
