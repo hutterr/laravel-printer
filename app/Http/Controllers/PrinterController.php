@@ -99,6 +99,7 @@ class PrinterController extends Controller
          }); 
 
         $maxFekete=0;
+        $minFekete=$fekete[0];
         $dbFekete=0;
     
         foreach ($fekete as $szam) {            
@@ -106,10 +107,14 @@ class PrinterController extends Controller
             if($szam > $maxFekete){
                 $maxFekete = $szam;
             }
+            if($szam < $minFekete){
+                $minFekete = $szam;
+            }
             $dbFekete++;
         }
 
         $maxSzines=0;
+        $minSzines=$szines[0];
         $dbSzines=0;
     
         foreach ($szines as $szin) {            
@@ -117,13 +122,16 @@ class PrinterController extends Controller
             if($szin > $maxSzines){
                 $maxSzines = $szin;
             }
+            if($szin < $minSzines){
+                $minSzines = $szin;
+            }
             $dbSzines++;
         }
 
 
         
-       $atlagFekete = intval($maxFekete/$dbFekete);
-       $atlagSzines = intval($maxSzines/$dbSzines);
+       $atlagFekete = intval(($maxFekete-$minFekete)/$dbFekete);
+       $atlagSzines = intval(($maxSzines-$minSzines)/$dbSzines);
 
        $feketeChart = new CounterChart;
        $feketeChart->height(200);
