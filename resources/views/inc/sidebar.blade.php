@@ -9,7 +9,10 @@
             </a>          
         </li>       
         @guest
-        @else   
+        @else  
+        
+             <!--  Cégek -->
+
         <li class="info">           
                <i class="fas fa-building fa-2x"></i>
                 <span class="nav-text">                   
@@ -32,6 +35,9 @@
                 </span>
             </a>           
         </li>
+
+             <!-- Nyomtatók -->
+
         <li class="info">           
             <i class="fas fa-print fa-2x"></i>
              <span class="nav-text">
@@ -53,7 +59,10 @@
                     Új nyomtató felvétele
                 </span>
             </a>           
-        </li>    
+        </li>  
+        
+        <!-- Számlálók -->
+
         <li class="info">           
                 <i class="fas fa-clipboard-list fa-2x"></i>
                  <span class="nav-text">
@@ -69,6 +78,9 @@
                     </span>
                 </a>           
             </li>    
+
+                 <!--  Javítások -->
+
             <li class="info">           
                     <i class="fas fa-tools fa-2x"></i>
                      <span class="nav-text">
@@ -84,6 +96,32 @@
                         </span>
                     </a>           
                 </li>    
+
+                <!--  Alkatrészek, kellékek -->
+
+                <li class="info">           
+                    <i class="fas fa-stream fa-2x"></i>
+                     <span class="nav-text">
+                       <strong>Kellékek, alkatrészek</strong>
+                     </span>                  
+                </li>                
+                <li class="has-subnav">
+                <a href="{{route('javitasok.create')}}">
+                       <i class="fas fa-plus"></i>
+                        <span class="nav-text">
+                            Új alkatrész rögzítése
+                        </span>
+                    </a>           
+                </li>    
+                <li class="has-subnav">
+                    <a href="{{route('javitasok.create')}}">
+                           <i class="fas fa-plus"></i>
+                            <span class="nav-text">
+                                Új felhasználás rögzítése
+                            </span>
+                        </a>           
+                    </li>    
+                
         
         @endguest
         
