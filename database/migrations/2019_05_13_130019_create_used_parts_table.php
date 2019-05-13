@@ -15,7 +15,7 @@ class CreateUsedPartsTable extends Migration
     {
         Schema::create('used_parts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('');
+            $table->integer('db');
             $table->unsignedInteger('printer_id')->nullable($value = false);
             $table->unsignedBigInteger('parts_id')->nullable($value = false);
             $table->timestamps();

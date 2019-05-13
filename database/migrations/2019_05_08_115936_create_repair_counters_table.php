@@ -18,7 +18,7 @@ class CreateRepairCountersTable extends Migration
             $table->unsignedInteger('printer_id');
             $table->integer('fekete');
             $table->integer('szines')->nullable($value = true);
-            $table->timestamps('datum')->nullable($value = true);
+            $table->timestamp('datum')->nullable($value = true);
             $table->string('megjegyzes')->nullable($value = true);
             $table->string('technikus');
             $table->timestamps();
