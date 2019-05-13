@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Cegek;
 use App\PrinterCounter;
 use App\RepairCounter;
+use App\UsedParts;
 
 class Printer extends Model
 {
@@ -22,5 +23,9 @@ class Printer extends Model
     public function javitasok()
     {
         return $this->hasMany(RepairCounter::class, 'printer_id', 'id');
+    }
+    public function alkatresz() 
+    {
+        return $this->hasMany(UsedParts::class, 'printer_id','id');
     }
 }

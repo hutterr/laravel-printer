@@ -89,19 +89,25 @@ class PrinterController extends Controller
        $datum = $szamlalo->map(function($szamlalo){
            return date('Y/m/d', strtotime($szamlalo->bejelentesi_datum));
        });
-
-       $fekete = $szamlalo->map(function($szamlalo){
-        return $szamlalo->fekete;
-        }); 
-
-        $szines = $szamlalo->map(function($szamlalo){
-            return $szamlalo->szines;
-         }); 
+       if(count($szamlalo) == 0){
+           $fekete = array();
+           $szines = array();          
+           
+        }else{
+                $fekete = $szamlalo->map(function($szamlalo){
+                    return $szamlalo->fekete;
+                }); 
+        
+                $szines = $szamlalo->map(function($szamlalo){
+                    return $szamlalo->szines;
+                }); 
+        }
+       
 
         $maxFekete=0;
-        $minFekete=$fekete[0];
+        $minFekete=empty($fekete) ? 0 : $fekete[0];
         $dbFekete=0;
-    
+        if(!empty($fekete)){
         foreach ($fekete as $szam) {            
             
             if($szam > $maxFekete){
@@ -112,11 +118,12 @@ class PrinterController extends Controller
             }
             $dbFekete++;
         }
+        }
 
         $maxSzines=0;
-        $minSzines=$szines[0];
+        $minSzines=empty($szines) ? 0 :$szines[0];
         $dbSzines=0;
-    
+        if(!empty($szines)){
         foreach ($szines as $szin) {            
             
             if($szin > $maxSzines){
@@ -127,11 +134,12 @@ class PrinterController extends Controller
             }
             $dbSzines++;
         }
+        }
 
 
         
-       $atlagFekete = intval(($maxFekete-$minFekete)/$dbFekete);
-       $atlagSzines = intval(($maxSzines-$minSzines)/$dbSzines);
+       $atlagFekete = empty($fekete) ? 0 : intval(($maxFekete-$minFekete)/$dbFekete);
+       $atlagSzines = empty($szines) ? 0 : intval(($maxSzines-$minSzines)/$dbSzines);
 
        $feketeChart = new CounterChart;
        $feketeChart->height(200);
