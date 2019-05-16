@@ -13,7 +13,7 @@
 
         </div>
         <div class="card-body">
-            <form class="col-lg-11 mx-auto" action="/szamlalo" method="POST">         
+            <form class="col-lg-11 mx-auto" action="/javitasok" method="POST">         
                 <div class="form-group row">
                         <label for="printer_id" class="col-sm-2 col-form-label ">Gépszám</label>
                         <div class="col-sm-10">
