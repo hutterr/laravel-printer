@@ -28,4 +28,15 @@ class Printer extends Model
     {
         return $this->hasMany(UsedParts::class, 'printer_id','id');
     }
+    public function alkatreszReszlet()
+    {
+        return $this->hasOneThrough(
+            'App\Parts',
+            'App\UsedParts',
+            'parts_id',
+            'id',
+            'id',
+            'printer_id'
+        );
+    }
 }

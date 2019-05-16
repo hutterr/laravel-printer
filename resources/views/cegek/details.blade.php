@@ -21,13 +21,13 @@
                 @csrf
             </form>  
             <div class="row justify-content-end mr-4">
-                <button type="button" class="btn btn-danger col-lg-2" data-toggle="modal" data-target="#megerosites">
+                <button type="button" class="btn btn-danger col-lg-2" data-toggle="modal" data-target="#megerosites" >
                     Törlés
                 </button>
             </div>       
         </div>
       </div>
-      <div  id="megerosites" class="modal" tabindex="-1" role="dialog">
+      <div  id="megerosites" class="modal" role="dialog">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -55,9 +55,7 @@
           </div>
 </div>
 <script>
-    $('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
+  
 </script>
 
 @endsection

@@ -9,12 +9,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     
-    <!-- Scripts -->
-    
-    <script
-			  src="https://code.jquery.com/jquery-3.4.1.js"
-			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-			  crossorigin="anonymous"></script>
+    <!-- Scripts -->  
+   
 
 
     <!-- Fonts -->
@@ -25,6 +21,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
     @include('inc.sidebar')
