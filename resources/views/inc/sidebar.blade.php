@@ -114,7 +114,7 @@
                     </a>           
                 </li>    
                 <li class="has-subnav">
-                    <a href="{{route('javitasok.create')}}">
+                    <a href="{{route('hasznalt.create')}}">
                            <i class="fas fa-plus"></i>
                             <span class="nav-text">
                                 Új felhasználás rögzítése

@@ -13,7 +13,7 @@
 
         </div>
         <div class="card-body">
-            <form class="col-lg-11 mx-auto" action="/javitasok" method="POST">         
+            <form class="col-lg-11 mx-auto" action="/alkatresz" method="POST">         
                 <div class="form-group row">
                         <label for="edp" class="col-sm-2 col-form-label ">EDP kód</label>
                         <div class="col-sm-10">

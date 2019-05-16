@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\UsedParts;
 use App\Printer;
+use App\Parts;
 use Illuminate\Http\Request;
 
 class UsedPartsController extends Controller
@@ -25,7 +26,11 @@ class UsedPartsController extends Controller
      */
     public function create()
     {
-        //
+        $nyomtatok = Printer::all();
+        $alkatreszek = Parts::all();
+
+        return view('parts.usedCreate', compact('nyomtatok', 'alkatreszek'));
+
     }
 
     /**
@@ -36,7 +41,18 @@ class UsedPartsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'db' => 'required',
+            'printer_id' => 'required',
+            'parts_id' => 'required'
+        ]);
+
+        UsedParts::create($validate);
+
+        return view('parts.show');
+
+        
+
     }
 
     /**
@@ -72,7 +88,7 @@ class UsedPartsController extends Controller
      */
     public function update(Request $request, UsedParts $usedParts)
     {
-        //
+        
     }
 
     /**
