@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\UsedParts;
+use App\Printer;
 use Illuminate\Http\Request;
 
 class UsedPartsController extends Controller
@@ -44,9 +45,11 @@ class UsedPartsController extends Controller
      * @param  \App\UsedParts  $usedParts
      * @return \Illuminate\Http\Response
      */
-    public function show(UsedParts $usedParts)
+    public function show($id)
     {
-        //
+        $felhasznalas = Printer::find($id)->alkatresz()->get();
+
+        return view('parts.usedShow',compact('felhasznalas'));
     }
 
     /**

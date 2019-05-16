@@ -84,7 +84,12 @@ class PrinterController extends Controller
        $szamlalok = Printer::find($id)->szamlalo()->orderBy('created_at','desc')->paginate(6);
        $szamlalo = Printer::find($id)->szamlalo()->orderBy('created_at','asc')->take(12)->get();
        $javitasok = Printer::find($id)->javitasok()->orderBy('created_at','desc')->paginate(6);
-       //$javitasok = array();
+       $alkatreszKoltseg = Printer::find($id)->alkatresz()->get();
+       $alkKoltsegSzum=0;
+       foreach($alkatreszKoltseg as $koltseg){
+            $alkKoltsegSzum += ($koltseg->db * $koltseg->alkatresz->ar);
+       }
+       
 
        $datum = $szamlalo->map(function($szamlalo){
            return date('Y/m/d', strtotime($szamlalo->bejelentesi_datum));
@@ -157,7 +162,7 @@ class PrinterController extends Controller
         
         ]);
 
-       return view('printer.details',compact('printer','cegek','szamlalok','feketeChart','szinesChart','atlagFekete','atlagSzines','javitasok'));
+       return view('printer.details',compact('printer','cegek','szamlalok','feketeChart','szinesChart','atlagFekete','atlagSzines','javitasok','alkKoltsegSzum'));
     }
 
     /**

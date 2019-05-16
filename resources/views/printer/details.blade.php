@@ -6,7 +6,7 @@
 @section('content')
 <div class="col-lg-12 mx-auto mt-3">
     <div class="row">
-            <div class="col-lg-6 mb-2">
+            <div class="col-lg-5 mb-2">
                     <div class="card">
                             <div class="card-header">
                                 <h5 class="text-center">Fekete számláló</h5>
@@ -19,7 +19,7 @@
                         </div>
                         </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                     <div class="card">
                             <div class="card-header">
                                     <h5 class="text-center">Színes számláló</h5>
@@ -32,6 +32,23 @@
                         </div>
                         </div>
             </div>
+            <div class="col-lg-2">
+                <div class="card">
+                        <div class="card-header">
+                                <h5 class="text-center">Költségek</h5>
+                                
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                Elhasznált alkatrész ktg: {{number_format($alkKoltsegSzum, 0, ' ', ' ')}} Ft.
+                            </div>
+                            <div class="row justify-content-center">
+                                <a class="btn btn-primary" href="\hasznalt\{{$printer->id}}">Részletek</a>
+
+                            </div>
+                    </div>
+                    </div>
+        </div>
         </div>
         <div class="row">
             <div class="col-lg-3 mb-2">
