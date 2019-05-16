@@ -39,13 +39,20 @@
                                 
                         </div>
                         <div class="card-body">
-                            <div class="text-center">
-                                Elhasznált alkatrész ktg: {{number_format($alkKoltsegSzum, 0, ' ', ' ')}} Ft.
-                            </div>
-                            <div class="row justify-content-center">
-                                <a class="btn btn-primary" href="\hasznalt\{{$printer->id}}">Részletek</a>
+                            <div class="border p-2">
+                                <div class="text-center">
+                                    Elhasznált alkatrész ktg:<br> {{number_format($alkKoltsegSzum, 0, ' ', ' ')}} Ft.
+                                </div>
+                                <div class="row justify-content-center">
+                                    <a class="btn btn-primary" href="\hasznalt\{{$printer->id}}">Részletek</a>
+    
+                                </div>
 
                             </div>
+                            <div class="text-center mt-2 border p-2">
+                                Beszerzési ár: <br> {{number_format($printer->beszer_ar, 0, ' ', ' ')}} Ft.
+                            </div>
+                            
                     </div>
                     </div>
         </div>

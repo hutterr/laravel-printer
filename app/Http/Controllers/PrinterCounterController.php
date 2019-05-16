@@ -42,7 +42,7 @@ class PrinterCounterController extends Controller
                 'printer_id' => 'required',
                 'fekete' => 'required',
                 'szines' => '',
-                'bejelentesi_datum' => ''          
+                'bejelentesi_datum' => 'required'          
             ]
         );
         PrinterCounter::create($counterData);

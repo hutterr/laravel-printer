@@ -47,7 +47,7 @@ class UsedPartsController extends Controller
      */
     public function show($id)
     {
-        $felhasznalas = Printer::find($id)->alkatresz()->get();
+        $felhasznalas = Printer::find($id)->alkatresz()->paginate(10);
 
         return view('parts.usedShow',compact('felhasznalas'));
     }

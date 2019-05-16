@@ -54,7 +54,7 @@
                         <div class="form-group row">
                                 <label for="megjegyzes" class="col-sm-2 col-form-label ">Megjegyzés</label>
                                 <div class="col-sm-10">
-                                    <textarea type="text" class="form-control" rows="5" id="megjegyzes" name="megjegyzes" value="{{old('megjegyzes')}}"></textarea>
+                                    <textarea type="text" class="form-control" rows="5" id="megjegyzes" name="megjegyzes" >{{old('megjegyzes')}}</textarea>
                                     <small>{{$errors->first('megjegyzes')}}</small>
                                 </div>
                             </div>

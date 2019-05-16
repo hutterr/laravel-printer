@@ -16,7 +16,8 @@
             <th class="text-center" scope="col">DB</th>
             <th class="text-center" scope="col">EDP</th>
             <th class="text-center"scope="col">Megnevezés</th>
-            <th class="text-center" scope="col">Ár</th>
+            <th class="text-center" scope="col">Egységár</th> 
+            <th class="text-center" scope="col">Összes ár</th>
             
             
           
@@ -34,6 +35,7 @@
                 <td class="align-middle text-center">{{$felhasznalt->db}}</td>
                 <td class="align-middle text-center">{{$felhasznalt->alkatresz->edp}}</td>
                 <td class="align-middle text-center">{{$felhasznalt->alkatresz->megnevezes}}</td>
+                <td class="align-middle text-center">{{number_format($felhasznalt->alkatresz->ar,0, ' ', ' ')}} Ft</td>
                 <td class="align-middle text-center">{{number_format($felhasznalt->db * $felhasznalt->alkatresz->ar, 0, ' ', ' ')}} Ft</td>  
                           
               </tr>
@@ -41,7 +43,11 @@
           @endif
         </tbody>
       </table> 
-      
+      @if(count($felhasznalas) > 0)
+            <div class="paginate mx-auto mt-2" >
+                {{$felhasznalas->links()}}            
+            </div>
+        @endif    
      
       
 @endsection
