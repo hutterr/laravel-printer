@@ -26,7 +26,7 @@
         <tbody>
           @if(count($felhasznalas) == 0)
           <tr>
-                  <th scope="row" colspan="7" class="text-center">Nincsenek még nyomtatók!</th>             
+                  <th scope="row" colspan="7" class="text-center">Nem volt alkatrész felhasználás!</th>             
           </tr>
           @else
               @foreach($felhasznalas as $felhasznalt)       
@@ -35,8 +35,8 @@
                 <td class="align-middle text-center">{{$felhasznalt->db}}</td>
                 <td class="align-middle text-center">{{$felhasznalt->alkatresz->edp}}</td>
                 <td class="align-middle text-center">{{$felhasznalt->alkatresz->megnevezes}}</td>
-                <td class="align-middle text-center">{{number_format($felhasznalt->alkatresz->ar,0, ' ', ' ')}} Ft</td>
-                <td class="align-middle text-center">{{number_format($felhasznalt->db * $felhasznalt->alkatresz->ar, 0, ' ', ' ')}} Ft</td>  
+                <td class="align-middle text-center">{{number_format($felhasznalt->ar,0, ' ', ' ')}} Ft</td>
+                <td class="align-middle text-center">{{number_format($felhasznalt->db * $felhasznalt->ar, 0, ' ', ' ')}} Ft</td>  
                           
               </tr>
               @endforeach

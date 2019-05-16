@@ -70,7 +70,7 @@ class CegekController extends Controller
      */
     public function show($id)
     {
-        $ceg = Cegek::where('id', $id)->first();
+        $ceg = Cegek::where('id', $id)->firstorFail();
         
         return view('cegek.details',compact('ceg'));
     }

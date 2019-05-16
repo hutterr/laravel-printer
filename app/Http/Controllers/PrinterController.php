@@ -87,7 +87,7 @@ class PrinterController extends Controller
        $alkatreszKoltseg = Printer::find($id)->alkatresz()->get();
        $alkKoltsegSzum=0;
        foreach($alkatreszKoltseg as $koltseg){
-            $alkKoltsegSzum += ($koltseg->db * $koltseg->alkatresz->ar);
+            $alkKoltsegSzum += ($koltseg->db * $koltseg->ar);
        }
        
 

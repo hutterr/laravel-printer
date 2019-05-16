@@ -39,7 +39,7 @@ class PartsController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'edp' => 'required',
+            'edp' => 'required|unique:parts,edp',
             'megnevezes' => 'required',
             'ar' => 'required'
         ]);

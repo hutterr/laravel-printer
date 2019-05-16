@@ -18,6 +18,7 @@ class CreateUsedPartsTable extends Migration
             $table->integer('db');
             $table->unsignedInteger('printer_id')->nullable($value = false);
             $table->unsignedBigInteger('parts_id')->nullable($value = false);
+            $table->interger('ar')->nullable($value = false);
             $table->timestamps();
         });
     }

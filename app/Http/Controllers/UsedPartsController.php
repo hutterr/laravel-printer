@@ -47,9 +47,17 @@ class UsedPartsController extends Controller
             'parts_id' => 'required'
         ]);
 
-        UsedParts::create($validate);
+        $ar = Parts::find($request->parts_id)->ar;
+        $save = new UsedParts();
+        $save->db = $request->db;
+        $save->printer_id = $request->printer_id;
+        $save->parts_id = $request->parts_id;
+        $save->ar = $ar;
+        $save->save();
 
-        return view('parts.show')->withErrors(['uzenet' => ['Sikeresen hozzáadva!']]);
+        
+
+        return view('repair.index')->withErrors(['uzenet' => ['Sikeresen hozzáadva!']]);
 
         
 
@@ -63,7 +71,7 @@ class UsedPartsController extends Controller
      */
     public function show($id)
     {
-        $felhasznalas = Printer::find($id)->alkatresz()->paginate(10);
+        $felhasznalas = Printer::findorFail($id)->alkatresz()->paginate(10);
 
         return view('parts.usedShow',compact('felhasznalas'));
     }
