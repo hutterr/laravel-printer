@@ -12,9 +12,12 @@ class PartsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $edp = is_null($request->edp) ? null : $request->edp;
+        $megnevezes = is_null($request->megnevezes) ? null : $request->megnevezes;
+        $alkatreszek = Parts::edp($edp)->megnevezes($megnevezes)->paginate(10);
+        return view('parts.show',compact('alkatreszek'));
     }
 
     /**

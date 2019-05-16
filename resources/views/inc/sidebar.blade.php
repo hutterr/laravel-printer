@@ -104,7 +104,15 @@
                      <span class="nav-text">
                        <strong>Kellékek, alkatrészek</strong>
                      </span>                  
-                </li>                
+                </li>
+                <li class="has-subnav">
+                    <a href="{{route('alkatresz.index')}}">
+                           <i class="fas fa-list"></i>
+                            <span class="nav-text">
+                            Alkatrészek listája
+                            </span>
+                        </a>           
+                    </li>                 
                 <li class="has-subnav">
                 <a href="{{route('alkatresz.create')}}">
                        <i class="fas fa-plus"></i>
