@@ -35,7 +35,15 @@ class PartsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'edp' => 'required',
+            'megnevezes' => 'required',
+            'ar' => 'required'
+        ]);
+
+        Parts::create($validate);
+
+        return view('parts.show')->withErrors(['uzenet' => ['Sikeresen hozzáadva!']]);
     }
 
     /**

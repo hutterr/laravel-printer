@@ -49,7 +49,7 @@ class UsedPartsController extends Controller
 
         UsedParts::create($validate);
 
-        return view('parts.show');
+        return view('parts.show')->withErrors(['uzenet' => ['Sikeresen hozzáadva!']]);
 
         
 

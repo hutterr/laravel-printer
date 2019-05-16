@@ -36939,13 +36939,14 @@ if (token) {
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!*****************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/bootstrap.js ./resources/sass/app.scss ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\user\Documents\coding\laravel-printer\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\user\Documents\coding\laravel-printer\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
 module.exports = __webpack_require__(/*! C:\Users\user\Documents\coding\laravel-printer\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
