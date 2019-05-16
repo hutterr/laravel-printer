@@ -106,7 +106,7 @@
                      </span>                  
                 </li>                
                 <li class="has-subnav">
-                <a href="{{route('javitasok.create')}}">
+                <a href="{{route('alkatresz.create')}}">
                        <i class="fas fa-plus"></i>
                         <span class="nav-text">
                             Új alkatrész rögzítése

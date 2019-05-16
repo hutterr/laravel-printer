@@ -24,7 +24,7 @@ class PartsController extends Controller
      */
     public function create()
     {
-        //
+        return view('parts.create');
     }
 
     /**
