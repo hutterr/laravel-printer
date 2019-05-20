@@ -58,9 +58,11 @@ class RepairCounterController extends Controller
      * @param  \App\RepairCounter  $repairCounter
      * @return \Illuminate\Http\Response
      */
-    public function show(RepairCounter $repairCounter)
+    public function show($id)
     {
-        //
+        $javitas = RepairCounter::findOrFail($id);
+        
+        return view('repair.show', compact('javitas'));
     }
 
     /**

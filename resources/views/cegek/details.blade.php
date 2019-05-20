@@ -58,6 +58,7 @@
     $nyomtatok = $ceg->printer()->paginate(10);
 
 @endphp
+<h1 class="text-center my-3 mx-auto py-2 bg-secondary col-lg-11 text-white">A cég nyomtatói</h1>
 <table class="table table-hover mx-auto mt-3" >
     <thead>
       <tr>

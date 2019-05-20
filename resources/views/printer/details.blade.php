@@ -58,7 +58,7 @@
         </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 mb-2">
+            <div class="col-lg-4 mb-2">
                     <div class="card" style="min-height: 450px">
                     <div class="card-header">
                             <h5 class="text-center">Adatok</h5>
@@ -173,7 +173,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <div class="card" style="min-height: 450px">
                     <div class="card-header">
                             <h5 class="text-center">Javítások táblázat</h5>
@@ -203,7 +203,7 @@
                                                 <td class="align-middle text-center">{{$javitas->fekete}}</td>
                                                 <td class="align-middle text-center">{{$javitas->szines}}</td>
                                                 <td class="align-middle text-center">{{$javitas->technikus}}</td>      
-                                                <td class="align-middle text-center"><a href="/javitasok/{{$javitas->id}}"></a>Részletek</td>                                           
+                                                <td class="align-middle text-center"><a href="/javitasok/{{$javitas->id}}">Részletek</a></td>                                           
                                             </tr>
                                             @endforeach
                                         @endif
