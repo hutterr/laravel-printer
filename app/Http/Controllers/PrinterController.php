@@ -90,12 +90,31 @@ class PrinterController extends Controller
        foreach($alkatreszKoltseg as $koltseg){
             $alkKoltsegSzum += ($koltseg->db * $koltseg->ar);
        }
-       
+     
+
 
        $datum = $szamlalo->map(function($szamlalo){
            return date('Y/m/d', strtotime($szamlalo->bejelentesi_datum));
        });
-       if(count($szamlalo) == 0){
+
+       
+        $datum_tomb = array();
+        foreach($szamlalo as $koltseg){
+        array_push($datum_tomb,  strtotime($koltseg->bejelentesi_datum));
+        }
+       
+      
+        $min_date = min($datum_tomb);
+        $max_date = max($datum_tomb);
+
+        $honap = 0;
+
+        while (($min_date = strtotime("+1 MONTH", $min_date)) <= $max_date) {
+            $honap++;
+        }
+        
+        
+        if(count($szamlalo) == 0){
            $fekete = array();
            $szines = array();          
            
@@ -144,8 +163,8 @@ class PrinterController extends Controller
 
 
         
-       $atlagFekete = empty($fekete) ? 0 : intval(($maxFekete-$minFekete)/$dbFekete);
-       $atlagSzines = empty($szines) ? 0 : intval(($maxSzines-$minSzines)/$dbSzines);
+       $atlagFekete = empty($fekete) ? 0 : intval(($maxFekete-$minFekete)/$honap);
+       $atlagSzines = empty($szines) ? 0 : intval(($maxSzines-$minSzines)/$honap);
 
        $feketeChart = new CounterChart;
        $feketeChart->height(200);
