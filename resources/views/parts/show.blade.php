@@ -33,8 +33,8 @@
           <tr>
             <th class="text-center" scope="col">EDP kód</th>
             <th class="text-center" scope="col">Megnevezés</th>
-            <th class="text-center" scope="col">Ár</th>
-           
+            <th class="text-center" scope="col">Ár</th>           
+            <th class="text-center" scope="col"></th>
             
           
           </tr>
@@ -50,6 +50,7 @@
               <td class="align-middle text-center">{{$alkatresz->edp}}</td>
               <td class="align-middle text-center">{{$alkatresz->megnevezes}}</td>
               <td class="align-middle text-center">{{$alkatresz->ar}}</td>
+              <td class="align-middle text-center"><a class="btn btn-primary" href="/alkatresz/{{$alkatresz->id}}/edit">Módosítás</a></td>
                  
               </tr>
               @endforeach

@@ -120,7 +120,9 @@
                             Új alkatrész rögzítése
                         </span>
                     </a>           
-                </li>    
+                </li> 
+                
+                 
                 <li class="has-subnav">
                     <a href="{{route('hasznalt.create')}}">
                            <i class="fas fa-plus"></i>

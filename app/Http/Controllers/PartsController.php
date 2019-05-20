@@ -57,7 +57,7 @@ class PartsController extends Controller
      */
     public function show(Parts $parts)
     {
-        //
+       
     }
 
     /**
@@ -66,9 +66,10 @@ class PartsController extends Controller
      * @param  \App\Parts  $parts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Parts $parts)
+    public function edit($id)
     {
-        //
+        $alkatresz = Parts::findOrFail($id);
+        return view('parts.modify', compact('alkatresz'));
     }
 
     /**
@@ -78,9 +79,18 @@ class PartsController extends Controller
      * @param  \App\Parts  $parts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Parts $parts)
+    public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'edp' => 'required',
+            'megnevezes' => 'required',
+            'ar' => 'required'
+        ]);
+
+        Parts::findOrFail($id)->update($validate);
+        $alkatreszek = Parts::paginate(10);
+
+        return view('parts.show',compact('alkatreszek'))->withErrors(['uzenet' => ['Sikeresen hozzáadva!']]);
     }
 
     /**
