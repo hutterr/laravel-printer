@@ -42,7 +42,7 @@ class Printer extends Model
     public function scopeGepszam($query, $gepszam)
     {
         if (!is_null($gepszam)) {
-            return $query->where('gepszam','LIKE', '%'.$gepszam.'%');
+            return $query->where('gepszam','LIKE', '%'.$gepszam.'%')->orWhere('geptipus', 'LIKE', '%'.$gepszam.'%');
         }
         
         return $query;

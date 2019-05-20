@@ -12,7 +12,7 @@
   <div class="row mx-auto mt-3" style="width: 80%">
     <form class="col-lg-2 form-inline" action="{{ route('nyomtatok.index') }}" method="get">
         <div class="form-group">
-            <input class="form-control" name="gepszam" placeholder="Gépszám">
+            <input class="form-control" name="gepszam" placeholder="Gépszám vagy típus">
           <div class="col-lg-2">
             <input class="btn btn-primary" type="submit" value="Keresés">
           </div>
