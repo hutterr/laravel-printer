@@ -9,6 +9,16 @@
     {{$errors->first('uzenet')}}
     </div>
   @endif
+  <div class="row mx-auto mt-3" style="width: 80%">
+    <form class="col-lg-2 form-inline" action="{{ route('nyomtatok.index') }}" method="get">
+        <div class="form-group">
+            <input class="form-control" name="gepszam" placeholder="Gépszám">
+          <div class="col-lg-2">
+            <input class="btn btn-primary" type="submit" value="Keresés">
+          </div>
+        </div>
+      </form>
+  </div>
 <table class="table table-hover mx-auto mt-3" >
         <thead>
           <tr>

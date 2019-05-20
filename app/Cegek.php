@@ -14,4 +14,14 @@ class Cegek extends Model
     {
         return $this->hasMany(Printer::class, 'ceg_id', 'id');
     }
+
+    public function scopeNev($query, $cegnev)
+    {
+        if (!is_null($cegnev)) {
+            return $query->where('cegnev','LIKE', '%'.$cegnev.'%');
+        }
+        
+        return $query;
+        
+    }
 }

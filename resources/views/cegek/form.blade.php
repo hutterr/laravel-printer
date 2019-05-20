@@ -34,7 +34,7 @@
               </div>
       </div>
       <div class="form-group row">
-              <label for="kapcstel" class="col-sm-2 col-form-label text-right">Cégnév</label>
+              <label for="kapcstel" class="col-sm-2 col-form-label text-right">Kapcs. telefonszám</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control{{($errors->first('kapcstel') ? " fail" : "")}}" id="kapcstel" name="kapcstel" value="{{old('kapcstel') ?? $ceg->kapcstel}}">
                 <small>{{$errors->first('kapcstel')}}</small>

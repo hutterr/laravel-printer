@@ -12,9 +12,11 @@ class CegekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
+
     {   
-        $cegek = Cegek::paginate(10);
+        $cegnev = is_null($request->cegnev) ? null : $request->cegnev;
+        $cegek = Cegek::nev($cegnev)->paginate(10);
 
         
         return view('cegek.index', compact('cegek'));

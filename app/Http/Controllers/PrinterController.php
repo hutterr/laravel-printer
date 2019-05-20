@@ -15,9 +15,10 @@ class PrinterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $nyomtatok = Printer::paginate(10);
+        $gepszam = is_null($request->gepszam) ? null : $request->gepszam;
+        $nyomtatok = Printer::gepszam($gepszam)->paginate(10);
 
         return view('printer.index',compact('nyomtatok'));
     }

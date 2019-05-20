@@ -39,4 +39,13 @@ class Printer extends Model
             'printer_id'
         );
     }
+    public function scopeGepszam($query, $gepszam)
+    {
+        if (!is_null($gepszam)) {
+            return $query->where('gepszam','LIKE', '%'.$gepszam.'%');
+        }
+        
+        return $query;
+        
+    }
 }
