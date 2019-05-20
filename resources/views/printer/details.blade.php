@@ -156,7 +156,7 @@
                             @else
                                 @foreach($szamlalok as $szamlalo)       
                                 <tr>             
-                                <td class="align-middle text-center">{{$szamlalo->created_at->format('Y/m/d')}}</td>
+                                <td class="align-middle text-center">{{date("Y-m-d", strtotime($szamlalo->bejelentesi_datum))}}</td>
                                 <td class="align-middle text-center">{{$szamlalo->fekete}}</td>
                                 <td class="align-middle text-center">{{$szamlalo->szines}}</td>
                                 
