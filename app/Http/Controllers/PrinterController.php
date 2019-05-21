@@ -161,7 +161,9 @@ class PrinterController extends Controller
         }
         }
 
-
+       if($honap == 0){
+           $honap = 1;
+       }
         
        $atlagFekete = empty($fekete) ? 0 : intval(($maxFekete-$minFekete)/$honap);
        $atlagSzines = empty($szines) ? 0 : intval(($maxSzines-$minSzines)/$honap);
