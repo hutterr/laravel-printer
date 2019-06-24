@@ -103,7 +103,7 @@ class CegekController extends Controller
             'cegnev' => 'required',
             'adoszam' => 'required|min:11',
             'cim' => 'required',
-            'telefonszam' => '',
+            'telefon' => '',
             'kapcsolattarto' => '',
             'kapcstel' => '',           
             ],

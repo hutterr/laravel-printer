@@ -248,4 +248,106 @@ class PrinterController extends Controller
     {
         //
     }
+    public function atlagSearch(Request $request){
+        $printers = Printer::all();
+        
+        $atlag = is_null($request->atlag) ? 1000 : $request->atlag;
+       
+        $szamlalo;
+        $datum_tomb = array();
+        $min_date;
+        $max_date;
+        
+        $atlagok = array();
+
+        foreach($printers as $printer){
+            $honap = 0;
+            $szamlalo = Printer::find($printer->id)->szamlalo()->get();
+            $datum = $szamlalo->map(function($szamlalo){
+                return date('Y/m/d', strtotime($szamlalo->bejelentesi_datum));
+            });     
+            
+            
+             foreach($szamlalo as $koltseg){
+                array_push($datum_tomb,  strtotime($koltseg->bejelentesi_datum));
+             }
+            
+           
+             $min_date = min($datum_tomb);
+             $max_date = max($datum_tomb);   
+                 
+             while (($min_date = strtotime("+1 MONTH", $min_date)) <= $max_date) {
+                 $honap++;
+             }
+             
+             
+             if(count($szamlalo) == 0){
+                $fekete = array();
+                $szines = array();         
+             }else{
+                $fekete = $szamlalo->map(function($szamlalo){
+                    return $szamlalo->fekete;
+                }); 
+        
+                $szines = $szamlalo->map(function($szamlalo){
+                    return $szamlalo->szines;
+                }); 
+             }
+            
+     
+             $maxFekete=0;
+             $minFekete=empty($fekete) ? 0 : $fekete[0];
+             $dbFekete=0;
+             if(!empty($fekete)){
+             foreach ($fekete as $szam) {            
+                 
+                 if($szam > $maxFekete){
+                     $maxFekete = $szam;
+                 }
+                 if($szam < $minFekete){
+                     $minFekete = $szam;
+                 }
+                 $dbFekete++;
+             }
+             }
+     
+             $maxSzines=0;
+             $minSzines=empty($szines) ? 0 :$szines[0];
+             $dbSzines=0;
+             if(!empty($szines)){
+             foreach ($szines as $szin) {            
+                 
+                 if($szin > $maxSzines){
+                     $maxSzines = $szin;
+                 }
+                 if($szin < $minSzines){
+                     $minSzines = $szin;
+                 }
+                 $dbSzines++;
+             }
+             }
+     
+            if($honap == 0){
+                $honap = 1;
+            }
+            
+             
+            $atlagFekete = empty($fekete) ? 0 : intval(($maxFekete-$minFekete)/$honap);
+            $atlagSzines = empty($szines) ? 0 : intval(($maxSzines-$minSzines)/$honap);
+            if($atlagFekete < $atlag){
+            array_push($atlagok,
+                array(
+                    "id" => $printer->id,
+                    "gepszam" => $printer->gepszam,
+                    "tipus" => $printer->tipus,
+                    "atlagF" => $atlagFekete,
+                    "atlagSz" => $atlagSzines
+                )
+                );
+            }
+        }
+        
+
+        dd($atlagok);
+    }
 }
