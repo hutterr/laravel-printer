@@ -163,8 +163,10 @@ class PrinterController extends Controller
 
        if($honap == 0){
            $honap = 1;
+       }else {
+           $honap++;
        }
-        
+        //dd($honap);
        $atlagFekete = empty($fekete) ? 0 : intval(($maxFekete-$minFekete)/$honap);
        $atlagSzines = empty($szines) ? 0 : intval(($maxSzines-$minSzines)/$honap);
 
@@ -254,13 +256,14 @@ class PrinterController extends Controller
         $atlagF = is_null($request->atlagF) ? 1000 : $request->atlagF;
         $atlagSz = is_null($request->atlagSz) ? 0 : $request->atlagSz;
         $szamlalo;
-        $datum_tomb = array();
+        $datum_tomb;
         $min_date;
         $max_date;
         
         $atlagok = array();
 
         foreach($printers as $printer){
+            $datum_tomb = array();
             $honap = 0;
             $szamlalo = Printer::find($printer->id)->szamlalo()->get();
             $datum = $szamlalo->map(function($szamlalo){
@@ -330,7 +333,9 @@ class PrinterController extends Controller
             if($honap == 0){
                 $honap = 1;
             }
-            
+            else {
+                $honap++;
+            }
              
             $atlagFekete = empty($fekete) ? 0 : intval(($maxFekete-$minFekete)/$honap);
             $atlagSzines = empty($szines) ? 0 : intval(($maxSzines-$minSzines)/$honap);
