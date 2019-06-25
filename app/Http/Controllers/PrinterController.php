@@ -248,11 +248,11 @@ class PrinterController extends Controller
     {
         //
     }
-    public function atlagSearch(Request $request){
+    public function atlagAlatt(Request $request){
         $printers = Printer::all();
         
-        $atlag = is_null($request->atlag) ? 1000 : $request->atlag;
-       
+        $atlagF = is_null($request->atlagF) ? 1000 : $request->atlagF;
+        $atlagSz = is_null($request->atlagSz) ? 0 : $request->atlagSz;
         $szamlalo;
         $datum_tomb = array();
         $min_date;
@@ -334,20 +334,53 @@ class PrinterController extends Controller
              
             $atlagFekete = empty($fekete) ? 0 : intval(($maxFekete-$minFekete)/$honap);
             $atlagSzines = empty($szines) ? 0 : intval(($maxSzines-$minSzines)/$honap);
-            if($atlagFekete < $atlag){
-            array_push($atlagok,
-                array(
-                    "id" => $printer->id,
-                    "gepszam" => $printer->gepszam,
-                    "tipus" => $printer->tipus,
-                    "atlagF" => $atlagFekete,
-                    "atlagSz" => $atlagSzines
-                )
-                );
+            if($atlagFekete < $atlagF){
+                if($atlagSz > 0){
+                    if($atlagSzines < $atlagSz){
+                        array_push($atlagok,
+                            array(
+                                "id" => $printer->id,
+                                "gepszam" => $printer->gepszam,
+                                "marka" => $printer->marka,
+                                "tipus" => $printer->tipus,
+                                "atlagF" => $atlagFekete,
+                                "atlagSz" => $atlagSzines
+                            )
+                            );
+                    }
+                }
+                else {
+                        array_push($atlagok,
+                            array(
+                                "id" => $printer->id,
+                                "gepszam" => $printer->gepszam,
+                                "marka" => $printer->marka,
+                                "tipus" => $printer->tipus,
+                                "atlagF" => $atlagFekete,
+                                "atlagSz" => $atlagSzines
+                            )
+                            );
+                    }
+                
             }
         }
         
 
-        dd($atlagok);
+       /*  $page = !empty( $_GET['page'] ) ? (int) $_GET['page'] : 1;
+        $total = count( $atlagok ); //total items in array    
+        $limit = 2; //per page    
+        $totalPages = ceil( $total/ $limit ); //calculate total pages
+        $page = max($page, 1); //get 1 page when $_GET['page'] <= 0
+        $page = min($page, $totalPages); //get last page when $_GET['page'] > $totalPages
+        $offset = ($page - 1) * $limit;
+        if( $offset < 0 ) $offset = 0;
+
+        $atlagTomb = array_slice( $atlagok, $offset, $limit ); */
+        
+       // dd($atlagTomb);
+        usort($atlagok, function($a, $b) {
+            return $a['atlagF'] <=> $b['atlagF'];
+        });
+        return view('printer.atlagalatt', compact('atlagok','totalPages','page'));
     }
 }

@@ -24,4 +24,5 @@ Route::resource('szamlalo','PrinterCounterController')->middleware('auth');
 Route::resource('javitasok','RepairCounterController')->middleware('auth');
 Route::resource('alkatresz','PartsController')->middleware('auth');
 Route::resource('hasznalt','UsedPartsController')->middleware('auth');
-Route::get('/atlag','PrinterController@atlagSearch')->middleware('auth');
+Route::get('/atlagalatt','PrinterController@atlagAlatt')->middleware('auth')->name('nyomtatok.atlagalatt');
+Route::get('/atlagfelett','PrinterController@atlagFelett')->middleware('auth')->name('nyomtatok.atlagfelett');

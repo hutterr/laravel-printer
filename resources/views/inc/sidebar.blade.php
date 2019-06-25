@@ -60,6 +60,14 @@
                 </span>
             </a>           
         </li>  
+        <li class="has-subnav">
+            <a href="{{route('nyomtatok.atlagalatt')}}">
+                   <i class="fas fa-search"></i>
+                    <span class="nav-text">
+                       Átlag alatti szűrés
+                    </span>
+                </a>           
+            </li> 
         
         <!-- Számlálók -->
 
