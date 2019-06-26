@@ -28,24 +28,23 @@
             <th class="text-center" scope="col">Típus</th>
             <th class="text-center"scope="col">Fekete átlag</th>
             <th class="text-center" scope="col">Színes átlag</th>
-           
-            
-          
+            <th class="text-center" scope="col"></th>
           </tr>
         </thead>
         <tbody>
           @if(count($atlagok) == 0)
           <tr>
-                  <th scope="row" colspan="7" class="text-center">Nincsenek még nyomtatók!</th>             
+                  <th scope="row" colspan="7" class="text-center">Nincsenek ilyen átlag alatti nyomtatók!</th>             
           </tr>
           @else
               @foreach($atlagok as $atlag)       
               <tr>             
-                <td class="align-middle text-center"><a class="button-list" href="\nyomtatok\{{$atlag['id']}}">{{$atlag['gepszam']}}</a></td>
+                <td class="align-middle text-center">{{$atlag['gepszam']}}</td>
                 <td class="align-middle text-center">{{$atlag['marka']}}</td>
                 <td class="align-middle text-center">{{$atlag['tipus']}}</td>
                 <td class="align-middle text-center">{{$atlag['atlagF']}}</td>
-                <td class="align-middle text-center">{{$atlag['atlagSz']}}</td>     
+                <td class="align-middle text-center">{{$atlag['atlagSz']}}</td>
+                <td class="align-middle text-center"><a class="btn btn-primary" href="\nyomtatok\{{$atlag['id']}}">Megnyitás</a></td>     
               </tr>
               @endforeach
           @endif

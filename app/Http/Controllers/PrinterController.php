@@ -253,8 +253,13 @@ class PrinterController extends Controller
     public function atlagAlatt(Request $request){
         $printers = Printer::all();
         
-        $atlagF = is_null($request->atlagF) ? 1000 : $request->atlagF;
         $atlagSz = is_null($request->atlagSz) ? 0 : $request->atlagSz;
+        if($atlagSz == 0){
+            $atlagF = is_null($request->atlagF) ? 1000 : $request->atlagF;
+        }
+        else {
+            $atlagF = is_null($request->atlagF) ? 100000 : $request->atlagF;
+        }
         $szamlalo;
         $datum_tomb;
         $min_date;
@@ -341,7 +346,7 @@ class PrinterController extends Controller
             $atlagSzines = empty($szines) ? 0 : intval(($maxSzines-$minSzines)/$honap);
             if($atlagFekete < $atlagF){
                 if($atlagSz > 0){
-                    if($atlagSzines < $atlagSz){
+                    if($atlagSzines < $atlagSz && $atlagSzines > 0){
                         array_push($atlagok,
                             array(
                                 "id" => $printer->id,
