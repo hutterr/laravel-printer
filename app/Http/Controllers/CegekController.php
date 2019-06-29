@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cegek;
+use App\Printer;
 
 class CegekController extends Controller
 {
@@ -129,9 +130,19 @@ class CegekController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        Cegek::where('id',$id)->delete();
-
-        return redirect('cegek')->withErrors(['uzenet' => ['Sikeres törlés!']]);
+    {   
+        if( Cegek::where('cegnev', 'LIKE', 'Master Partner Kft.')->first()->id == $id){
+            return redirect('cegek')->withErrors(['uzenet' => ['A saját cég nem törölhető!']]);
+        }else{
+            Cegek::where('id',$id)->delete();
+            $nyomtatok = Printer::where('ceg_id', 'LIKE', $id)->get();
+            $sajatCegID = Cegek::where('cegnev', 'LIKE', 'Master Partner Kft.')->first()->id;
+            foreach($nyomtatok as $nyomtato){
+                $nyomtato->ceg_id = $sajatCegID;
+                $nyomtato->save();
+            }
+    
+            return redirect('cegek')->withErrors(['uzenet' => ['Sikeres törlés!']]);
+        }
     }
 }

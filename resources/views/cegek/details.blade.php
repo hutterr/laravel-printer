@@ -21,9 +21,11 @@
                 @csrf
             </form>  
             <div class="row justify-content-end mr-4">
+              @if($ceg->cegnev != 'Master Partner Kft.')
                 <button type="button" class="btn btn-danger col-lg-2" data-toggle="modal" data-target="#megerosites" >
                     Törlés
                 </button>
+              @endif
             </div>       
         </div>
       </div>
