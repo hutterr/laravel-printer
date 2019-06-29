@@ -32,7 +32,14 @@ class HomeController extends Controller
         $kihelyezett = Printer::where('ceg_id', '!=', $cegid)->count();
         $javitasok = RepairCounter::all()->count();
         $alkatresz = Parts::all()->count();
-
+        $partnerek = Cegek::all()->count() - 1;
+        
+        if($sajat == 0 && $kihelyezett == 0){
+            $gepszam = 0;
+        }
+        else{
+            $gepszam =  null;
+        }
 
         $chart = new PieChart;
         $chart->height(300);
@@ -50,6 +57,6 @@ class HomeController extends Controller
         ]);
        
        
-        return view('home',compact('chart','javitasok','alkatresz'));
+        return view('home',compact('chart','javitasok','alkatresz','partnerek','gepszam'));
     }
 }

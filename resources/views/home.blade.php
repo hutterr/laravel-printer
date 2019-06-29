@@ -20,7 +20,12 @@
                               </h3>
                               </div>                    
                             <div class="col-lg-12 mt-5 mx-auto">
+                              
+                              @if (is_null($gepszam))                              
                                 {!! $chart->container() !!}
+                              @else
+                                  <h3>Nincsenek nyomtatók a rendszerben!</h3>
+                              @endif
                             </div>
                         </div>
                         <div class="col-lg-5">
@@ -36,9 +41,13 @@
                                             <td>{{$javitasok}} db</td>
                                           </tr>
                                           <tr>                                        
-                                                <td>Rendszerben lévő alkatrészek száma</td>
-                                                <td>{{$alkatresz}} db</td>
-                                              </tr>
+                                            <td>Rendszerben lévő alkatrészek száma</td>
+                                            <td>{{$alkatresz}} db</td>
+                                          </tr>
+                                          <tr>                                        
+                                              <td>Partnerek száma</td>
+                                              <td>{{$partnerek}} db</td>
+                                          </tr>
                                           
                                         </tbody>
                                       </table>
