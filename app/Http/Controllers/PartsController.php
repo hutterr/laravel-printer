@@ -45,7 +45,7 @@ class PartsController extends Controller
         ]);
 
         Parts::create($validate);
-        $alkatreszek = Parts::edp($edp)->megnevezes($megnevezes)->paginate(10);
+        $alkatreszek = Parts::paginate(10);
         return view('parts.show',compact('alkatreszek'))->withErrors(['uzenet' => ['Sikeresen hozzáadva!']]);
     }
 

@@ -86,105 +86,133 @@ class PrinterController extends Controller
        $szamlalo = Printer::find($id)->szamlalo()->orderBy('created_at','asc')->take(12)->get();
        $javitasok = Printer::find($id)->javitasok()->orderBy('created_at','desc')->paginate(6);
        $alkatreszKoltseg = Printer::find($id)->alkatresz()->get();
+
        $alkKoltsegSzum=0;
+       
        foreach($alkatreszKoltseg as $koltseg){
             $alkKoltsegSzum += ($koltseg->db * $koltseg->ar);
        }
-     
-
-
-       $datum = $szamlalo->map(function($szamlalo){
-           return date('Y/m/d', strtotime($szamlalo->bejelentesi_datum));
-       });
-
-       
-        $datum_tomb = array();
-        foreach($szamlalo as $koltseg){
-        array_push($datum_tomb,  strtotime($koltseg->bejelentesi_datum));
-        }
-       
+       $honap = 0;
+       $fekete = array();
+       $szines = array(); 
+       $datum  = array();
+       $maxFekete=0; 
+       $dbFekete=0;
       
-        $min_date = min($datum_tomb);
-        $max_date = max($datum_tomb);
-
-        $honap = 0;
-
-        while (($min_date = strtotime("+1 MONTH", $min_date)) <= $max_date) {
-            $honap++;
-        }
+       if($szamlalo->count() > 0){
+            $datum = $szamlalo->map(function($szamlalo){
+                return date('Y/m/d', strtotime($szamlalo->bejelentesi_datum));
+            });
         
-        
-        if(count($szamlalo) == 0){
-           $fekete = array();
-           $szines = array();          
-           
-        }else{
-                $fekete = $szamlalo->map(function($szamlalo){
-                    return $szamlalo->fekete;
-                }); 
-        
-                $szines = $szamlalo->map(function($szamlalo){
-                    return $szamlalo->szines;
-                }); 
-        }
-       
-
-        $maxFekete=0;
-        $minFekete=empty($fekete) ? 0 : $fekete[0];
-        $dbFekete=0;
-        if(!empty($fekete)){
-        foreach ($fekete as $szam) {            
             
-            if($szam > $maxFekete){
-                $maxFekete = $szam;
-            }
-            if($szam < $minFekete){
-                $minFekete = $szam;
-            }
-            $dbFekete++;
-        }
-        }
-
-        $maxSzines=0;
-        $minSzines=empty($szines) ? 0 :$szines[0];
-        $dbSzines=0;
-        if(!empty($szines)){
-        foreach ($szines as $szin) {            
+                $datum_tomb = array();
+                foreach($szamlalo as $koltseg){
+                array_push($datum_tomb,  strtotime($koltseg->bejelentesi_datum));
+                }
             
-            if($szin > $maxSzines){
-                $maxSzines = $szin;
+            
+                $min_date = min($datum_tomb);
+                $max_date = max($datum_tomb);
+        
+                
+        
+                while (($min_date = strtotime("+1 MONTH", $min_date)) <= $max_date) {
+                    $honap++;
+                }
+                
+                
+                if(count($szamlalo) == 0){
+                       
+                
+                }else{
+                        $fekete = $szamlalo->map(function($szamlalo){
+                            return $szamlalo->fekete;
+                        }); 
+                
+                        $szines = $szamlalo->map(function($szamlalo){
+                            return $szamlalo->szines;
+                        }); 
+                }
+            
+        
+                
+                $minFekete=empty($fekete) ? 0 : $fekete[0];
+                
+                if(!empty($fekete)){
+                foreach ($fekete as $szam) {            
+                    
+                    if($szam > $maxFekete){
+                        $maxFekete = $szam;
+                    }
+                    if($szam < $minFekete){
+                        $minFekete = $szam;
+                    }
+                    $dbFekete++;
+                }
+                }
+        
+                $maxSzines=0;
+                $minSzines=empty($szines) ? 0 :$szines[0];
+                $dbSzines=0;
+                if(!empty($szines)){
+                foreach ($szines as $szin) {            
+                    
+                    if($szin > $maxSzines){
+                        $maxSzines = $szin;
+                    }
+                    if($szin < $minSzines){
+                        $minSzines = $szin;
+                    }
+                    $dbSzines++;
+                }
+                }
+        
+            if($honap == 0){
+                $honap = 1;
+            }else {
+                $honap++;
             }
-            if($szin < $minSzines){
-                $minSzines = $szin;
-            }
-            $dbSzines++;
-        }
-        }
+            $feketeChart = new CounterChart;
+            $feketeChart->height(200);
+            $feketeChart->labels($datum);
+            $feketeChart->dataset('Fekete', 'line', $fekete)->options([
+             'color' => 'black',
+             'backgroundColor' => 'grey'
+             ]);
+            $szinesChart = new CounterChart;
+            $szinesChart->height(200);
+            $szinesChart->labels($datum);
+            $szinesChart->dataset('Színes', 'line', $szines)->options([
+             'color' => '#00CED1',
+             'backgroundColor' => '#00CED1',
+             
+             ]);
 
-       if($honap == 0){
-           $honap = 1;
-       }else {
-           $honap++;
        }
-        //dd($honap);
+       else{
+        
+        $feketeChart = new CounterChart;
+            $feketeChart->height(200);
+            $feketeChart->labels($datum);
+            $feketeChart->dataset('Fekete', 'line', $fekete)->options([
+             'color' => 'black',
+             'backgroundColor' => 'grey'
+             ]);
+            $szinesChart = new CounterChart;
+            $szinesChart->height(200);
+            $szinesChart->labels($datum);
+            $szinesChart->dataset('Színes', 'line', $szines)->options([
+             'color' => '#00CED1',
+             'backgroundColor' => '#00CED1',
+             
+             ]);
+
+       }
+
+        
        $atlagFekete = empty($fekete) ? 0 : intval(($maxFekete-$minFekete)/$honap);
        $atlagSzines = empty($szines) ? 0 : intval(($maxSzines-$minSzines)/$honap);
 
-       $feketeChart = new CounterChart;
-       $feketeChart->height(200);
-       $feketeChart->labels($datum);
-       $feketeChart->dataset('Fekete', 'line', $fekete)->options([
-        'color' => 'black',
-        'backgroundColor' => 'grey'
-        ]);
-       $szinesChart = new CounterChart;
-       $szinesChart->height(200);
-       $szinesChart->labels($datum);
-       $szinesChart->dataset('Színes', 'line', $szines)->options([
-        'color' => '#00CED1',
-        'backgroundColor' => '#00CED1',
-        
-        ]);
 
        return view('printer.details',compact('printer','cegek','szamlalok','feketeChart','szinesChart','atlagFekete','atlagSzines','javitasok','alkKoltsegSzum'));
     }
