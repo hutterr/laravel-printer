@@ -27,3 +27,4 @@ class Parts extends Model
         
     }
 }
+
