@@ -11,7 +11,7 @@ class Parts extends Model
     public function scopeEdp($query, $edp)
     {
         if (!is_null($edp)) {
-            return $query->where('edp',$edp);
+            return $query->where('edp','LIKE',  '%' . $edp . '%');
         }
         
         return $query;
