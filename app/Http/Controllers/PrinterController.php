@@ -83,7 +83,7 @@ class PrinterController extends Controller
        $cegek = Cegek::all();
        $printer = Printer::where('id',$id)->firstOrFail();
        $szamlalok = Printer::find($id)->szamlalo()->orderBy('created_at','desc')->paginate(6);
-       $szamlalo = Printer::find($id)->szamlalo()->orderBy('created_at','asc')->take(12)->get();
+       $szamlalo = Printer::find($id)->szamlalo()->orderBy('bejelentesi_datum','asc')->take(12)->get();
        $javitasok = Printer::find($id)->javitasok()->orderBy('created_at','desc')->paginate(6);
        $alkatreszKoltseg = Printer::find($id)->alkatresz()->get();
 
