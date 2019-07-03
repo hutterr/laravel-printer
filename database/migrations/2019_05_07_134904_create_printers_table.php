@@ -18,7 +18,7 @@ class CreatePrintersTable extends Migration
             $table->bigInteger('gepszam');
             $table->string('gyszam');
             $table->string('marka');
-            $table->string('geptipus', '10');
+            $table->string('geptipus');
             $table->unsignedInteger('ceg_id');
             $table->string('hely')->nullable($value = true);
             $table->string('elozohely')->nullable($value = true);

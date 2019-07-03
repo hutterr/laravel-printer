@@ -17,7 +17,7 @@
                 <div class="form-group row">
                         <label for="printer_id" class="col-sm-2 col-form-label ">Gépszám</label>
                         <div class="col-sm-10">
-                                <select class="form-control" id="printerSelect" name="printer_id">
+                                <select class="form-control" id="printerSelect" name="printer_id" value="{{old('datum')}}">
                                     @if($nyomtatok->count() == 0){
                                         <option disabled>Még nincsenek nyomtatok...</option>
                                     }

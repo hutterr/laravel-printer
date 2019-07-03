@@ -84,7 +84,7 @@ class PrinterController extends Controller
        $printer = Printer::where('id',$id)->firstOrFail();
        $szamlalok = Printer::find($id)->szamlalo()->orderBy('created_at','desc')->paginate(6);
        $szamlalo = Printer::find($id)->szamlalo()->orderBy('bejelentesi_datum','asc')->take(12)->get();
-       $javitasok = Printer::find($id)->javitasok()->orderBy('created_at','desc')->paginate(6);
+       $javitasok = Printer::find($id)->javitasok()->orderBy('datum','desc')->paginate(6);
        $alkatreszKoltseg = Printer::find($id)->alkatresz()->get();
 
        $alkKoltsegSzum=0;
@@ -299,107 +299,109 @@ class PrinterController extends Controller
             $datum_tomb = array();
             $honap = 0;
             $szamlalo = Printer::find($printer->id)->szamlalo()->get();
-            $datum = $szamlalo->map(function($szamlalo){
-                return date('Y/m/d', strtotime($szamlalo->bejelentesi_datum));
-            });     
-            
-            
-             foreach($szamlalo as $koltseg){
-                array_push($datum_tomb,  strtotime($koltseg->bejelentesi_datum));
-             }
-            
-           
-             $min_date = min($datum_tomb);
-             $max_date = max($datum_tomb);   
+            if($szamlalo->count() > 0){
+                $datum = $szamlalo->map(function($szamlalo){
+                    return date('Y/m/d', strtotime($szamlalo->bejelentesi_datum));
+                });     
+                
+                
+                 foreach($szamlalo as $koltseg){
+                    array_push($datum_tomb,  strtotime($koltseg->bejelentesi_datum));
+                 }
+                
+               
+                 $min_date = min($datum_tomb);
+                 $max_date = max($datum_tomb);   
+                     
+                 while (($min_date = strtotime("+1 MONTH", $min_date)) <= $max_date) {
+                     $honap++;
+                 }
                  
-             while (($min_date = strtotime("+1 MONTH", $min_date)) <= $max_date) {
-                 $honap++;
-             }
-             
-             
-             if(count($szamlalo) == 0){
-                $fekete = array();
-                $szines = array();         
-             }else{
-                $fekete = $szamlalo->map(function($szamlalo){
-                    return $szamlalo->fekete;
-                }); 
-        
-                $szines = $szamlalo->map(function($szamlalo){
-                    return $szamlalo->szines;
-                }); 
-             }
+                 
+                 if(count($szamlalo) == 0){
+                    $fekete = array();
+                    $szines = array();         
+                 }else{
+                    $fekete = $szamlalo->map(function($szamlalo){
+                        return $szamlalo->fekete;
+                    }); 
             
-     
-             $maxFekete=0;
-             $minFekete=empty($fekete) ? 0 : $fekete[0];
-             $dbFekete=0;
-             if(!empty($fekete)){
-             foreach ($fekete as $szam) {            
-                 
-                 if($szam > $maxFekete){
-                     $maxFekete = $szam;
+                    $szines = $szamlalo->map(function($szamlalo){
+                        return $szamlalo->szines;
+                    }); 
                  }
-                 if($szam < $minFekete){
-                     $minFekete = $szam;
+                
+         
+                 $maxFekete=0;
+                 $minFekete=empty($fekete) ? 0 : $fekete[0];
+                 $dbFekete=0;
+                 if(!empty($fekete)){
+                 foreach ($fekete as $szam) {            
+                     
+                     if($szam > $maxFekete){
+                         $maxFekete = $szam;
+                     }
+                     if($szam < $minFekete){
+                         $minFekete = $szam;
+                     }
+                     $dbFekete++;
                  }
-                 $dbFekete++;
-             }
-             }
-     
-             $maxSzines=0;
-             $minSzines=empty($szines) ? 0 :$szines[0];
-             $dbSzines=0;
-             if(!empty($szines)){
-             foreach ($szines as $szin) {            
-                 
-                 if($szin > $maxSzines){
-                     $maxSzines = $szin;
                  }
-                 if($szin < $minSzines){
-                     $minSzines = $szin;
+         
+                 $maxSzines=0;
+                 $minSzines=empty($szines) ? 0 :$szines[0];
+                 $dbSzines=0;
+                 if(!empty($szines)){
+                 foreach ($szines as $szin) {            
+                     
+                     if($szin > $maxSzines){
+                         $maxSzines = $szin;
+                     }
+                     if($szin < $minSzines){
+                         $minSzines = $szin;
+                     }
+                     $dbSzines++;
                  }
-                 $dbSzines++;
-             }
-             }
-     
-            if($honap == 0){
-                $honap = 1;
-            }
-            else {
-                $honap++;
-            }
-             
-            $atlagFekete = empty($fekete) ? 0 : intval(($maxFekete-$minFekete)/$honap);
-            $atlagSzines = empty($szines) ? 0 : intval(($maxSzines-$minSzines)/$honap);
-            if($atlagFekete < $atlagF){
-                if($atlagSz > 0){
-                    if($atlagSzines < $atlagSz && $atlagSzines > 0){
-                        array_push($atlagok,
-                            array(
-                                "id" => $printer->id,
-                                "gepszam" => $printer->gepszam,
-                                "marka" => $printer->marka,
-                                "tipus" => $printer->tipus,
-                                "atlagF" => $atlagFekete,
-                                "atlagSz" => $atlagSzines
-                            )
-                            );
-                    }
+                 }
+         
+                if($honap == 0){
+                    $honap = 1;
                 }
                 else {
-                        array_push($atlagok,
-                            array(
-                                "id" => $printer->id,
-                                "gepszam" => $printer->gepszam,
-                                "marka" => $printer->marka,
-                                "tipus" => $printer->tipus,
-                                "atlagF" => $atlagFekete,
-                                "atlagSz" => $atlagSzines
-                            )
-                            );
+                    $honap++;
+                }
+                 
+                $atlagFekete = empty($fekete) ? 0 : intval(($maxFekete-$minFekete)/$honap);
+                $atlagSzines = empty($szines) ? 0 : intval(($maxSzines-$minSzines)/$honap);
+                if($atlagFekete < $atlagF){
+                    if($atlagSz > 0){
+                        if($atlagSzines < $atlagSz && $atlagSzines > 0){
+                            array_push($atlagok,
+                                array(
+                                    "id" => $printer->id,
+                                    "gepszam" => $printer->gepszam,
+                                    "marka" => $printer->marka,
+                                    "tipus" => $printer->tipus,
+                                    "atlagF" => $atlagFekete,
+                                    "atlagSz" => $atlagSzines
+                                )
+                                );
+                        }
                     }
-                
+                    else {
+                            array_push($atlagok,
+                                array(
+                                    "id" => $printer->id,
+                                    "gepszam" => $printer->gepszam,
+                                    "marka" => $printer->marka,
+                                    "tipus" => $printer->tipus,
+                                    "atlagF" => $atlagFekete,
+                                    "atlagSz" => $atlagSzines
+                                )
+                                );
+                        }
+                    
+                }
             }
         }
         
@@ -415,7 +417,7 @@ class PrinterController extends Controller
 
         $atlagTomb = array_slice( $atlagok, $offset, $limit ); */
         
-       // dd($atlagTomb);
+        //dd($atlagTomb);
         usort($atlagok, function($a, $b) {
             return $a['atlagF'] <=> $b['atlagF'];
         });

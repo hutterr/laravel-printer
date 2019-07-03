@@ -139,6 +139,8 @@ class CegekController extends Controller
             $sajatCegID = Cegek::where('cegnev', 'LIKE', 'Master Partner Kft.')->first()->id;
             foreach($nyomtatok as $nyomtato){
                 $nyomtato->ceg_id = $sajatCegID;
+                $nyomtato->elozohely = $nyomtato->hely;
+                $nyomtato->hely = '';
                 $nyomtato->save();
             }
     
