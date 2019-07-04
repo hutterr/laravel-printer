@@ -34,6 +34,7 @@
                                 <option disabled>Még nincsenek cégek...</option>
                             }
                             @else
+                            <option selected disabled>Válasszont céget</option>
                                 @foreach ($cegek as $ceg)
                                 <option value="{{$ceg->id}}" {{ $ceg->id == $printer->ceg_id ? 'selected' : ''}}>{{$ceg->cegnev}}</option>
                                 @endforeach

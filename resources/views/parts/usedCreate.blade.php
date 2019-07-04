@@ -22,6 +22,7 @@
                                         <option disabled>Még nincsenek nyomtatok...</option>
                                     }
                                     @else
+                                    <option selected disabled>Válasszont nyomtatót</option>
                                         @foreach ($nyomtatok as $nyomtato)
                                         <option value="{{$nyomtato->id}}" >{{$nyomtato->gepszam}}</option>
                                         @endforeach
