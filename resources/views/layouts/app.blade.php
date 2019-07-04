@@ -24,10 +24,10 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
-    @include('inc.sidebar')
-        
+    {{-- @include('inc.sidebar') --}}
+    @include('inc.navbar')
     <div class="content">
-       @yield('nav')
+       
             <div class="main-area">
                 @yield('content')
 

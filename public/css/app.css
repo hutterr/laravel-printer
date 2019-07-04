@@ -10666,23 +10666,27 @@ a.text-dark:focus {
   }
 }
 
-.content {
-  margin-left: 60px;
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
 }
 
-.fa-2x {
-  font-size: 24px;
+.fa-fw {
+  margin-right: 5px;
+}
+
+/* .fa-2x {
+    font-size: 24px;
 }
 
 .fa,
 .fas {
-  position: relative;
-  display: table-cell;
-  width: 60px;
-  height: 36px;
-  text-align: center;
-  vertical-align: middle;
-}
+    position: relative;
+    display: table-cell;
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+} */
 
 .main-menu:hover,
 nav.main-menu.expanded {
