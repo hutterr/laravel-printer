@@ -381,7 +381,7 @@ class PrinterController extends Controller
                                     "id" => $printer->id,
                                     "gepszam" => $printer->gepszam,
                                     "marka" => $printer->marka,
-                                    "tipus" => $printer->tipus,
+                                    "tipus" => $printer->geptipus,
                                     "atlagF" => $atlagFekete,
                                     "atlagSz" => $atlagSzines
                                 )
@@ -394,7 +394,7 @@ class PrinterController extends Controller
                                     "id" => $printer->id,
                                     "gepszam" => $printer->gepszam,
                                     "marka" => $printer->marka,
-                                    "tipus" => $printer->tipus,
+                                    "tipus" => $printer->geptipus,
                                     "atlagF" => $atlagFekete,
                                     "atlagSz" => $atlagSzines
                                 )

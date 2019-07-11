@@ -199,7 +199,7 @@
                                         @else
                                             @foreach($javitasok as $javitas)       
                                             <tr>             
-                                                <td class="align-middle text-center">{{$javitas->created_at->format('Y/m/d')}}</td>
+                                                <td class="align-middle text-center">{{date("Y-m-d", strtotime($javitas->datum))}}</td>
                                                 <td class="align-middle text-center">{{$javitas->fekete}}</td>
                                                 <td class="align-middle text-center">{{$javitas->szines}}</td>
                                                 <td class="align-middle text-center">{{$javitas->technikus}}</td>      

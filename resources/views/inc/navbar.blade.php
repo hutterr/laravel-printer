@@ -15,10 +15,10 @@
         @else
             <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-home fa-fw"></i>Kezdőlap</a>
+                <a class="nav-link" href="/home"><i class="fas fa-home fa-fw"></i>Kezdőlap</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-building fa-fw"></i>Cégek
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -32,7 +32,7 @@
                             <i class="fas fa-print fa-fw"></i>Nyomtatók
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{route('cegek.index')}}"><i class="fas fa-list fa-fw"></i>Nyomtatók listája</a>
+                    <a class="dropdown-item" href="{{route('nyomtatok.index')}}"><i class="fas fa-list fa-fw"></i>Nyomtatók listája</a>
                     <a class="dropdown-item" href="{{route('nyomtatok.create')}}"> <i class="fas fa-plus fa-fw"></i>Új nyomtató felvétele</a>
                     <a class="dropdown-item" href="{{route('nyomtatok.atlagalatt')}}"> <i class="fas fa-plus fa-fw"></i>Átlag alatti szűrés</a>
                    
