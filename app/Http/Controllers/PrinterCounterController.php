@@ -43,6 +43,11 @@ class PrinterCounterController extends Controller
                 'fekete' => 'required',
                 'szines' => '',
                 'bejelentesi_datum' => 'required'          
+            ],
+            [
+                'printer_id:required' => 'Kötelező nyomtatót választani!',
+                'fekete:required' => 'Kötelező a fekete számláló megadása!',
+                'bejelentesi_datum:required' => 'Kötelező megadni a bejelentés dátumát'
             ]
         );
         PrinterCounter::create($counterData);

@@ -16,7 +16,7 @@ class CreateCegeksTable extends Migration
         Schema::create('cegek', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('cegnev');
-            $table->bigInteger('adoszam');
+            $table->bigInteger('adoszam')->nullable($value = true);
             $table->string('cim');
             $table->string('telefon')->nullable($value = true);
             $table->string('kapcsolattarto')->nullable($value = true);

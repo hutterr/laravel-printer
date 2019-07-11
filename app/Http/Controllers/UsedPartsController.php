@@ -45,7 +45,13 @@ class UsedPartsController extends Controller
             'db' => 'required',
             'printer_id' => 'required',
             'parts_id' => 'required'
-        ]);
+        ],
+        [
+            'db:required' => 'Kötelező megadni, legalább 1 db-ot!',
+            'printer_id:required' => 'Kötelező gépet választani!',
+            'parts_id:required' => 'Kötelező alkatrészt választani!'
+        ]
+        );
 
         $ar = Parts::find($request->parts_id)->ar;
         $save = new UsedParts();

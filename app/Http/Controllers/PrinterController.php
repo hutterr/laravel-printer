@@ -66,6 +66,13 @@ class PrinterController extends Controller
             'fax' => '',
             'hdd' => '',
             'beszer_ar' => '',           
+            ],
+            [
+             'gepszam:required' => 'Kötelező gépszámot megadni!',
+             'gepszam:unigque' => 'Ez a gépszám már szerepel a rendszerben!',
+             'gyszam:required' => 'Kötelező megadni a gép gyáriszámát!',
+             'gyszam:unique' => 'Kötelező kitölteni a gyári számot!',
+             'ceg_id:required' => 'Kötelező céget választani!'   
             ]
         );
         Printer::create($printerData);
@@ -261,6 +268,9 @@ class PrinterController extends Controller
             'fax' => '',
             'hdd' => '',
             'beszer_ar' => '',           
+            ],
+            [
+               'ceg_id:required' => 'Kötelező megadni!' 
             ]
         );
        Printer::where('id',$id)->update($printerData);

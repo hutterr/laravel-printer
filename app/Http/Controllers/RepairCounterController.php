@@ -45,6 +45,12 @@ class RepairCounterController extends Controller
                 'datum' => 'required',
                 'megjegyzes' => 'required',
                 'technikus' => 'required'          
+            ],
+            [
+                'printer_id:required' => 'Kötelező nyomatót választani!',
+                'fekete:required'  => 'Kötelező a fekete számláló kitöltése!',
+                'datum:required' => 'Kötelező a dátum megadása!',
+                'megjegyzes:required' => 'Kötelező megadni mi történt a géppel!'
             ]
         );
         RepairCounter::create($repairData);

@@ -42,7 +42,14 @@ class PartsController extends Controller
             'edp' => 'required|unique:parts,edp',
             'megnevezes' => 'required',
             'ar' => 'required'
-        ]);
+        ],
+        [
+            'edp:required' => 'Ez EDP kötelezően kitöltendő!',
+            'edp:unique' => 'Ez az EDP már szerepel a rendszerben!',
+            'megnevezes:required' => 'Kötelező nevet adni az alkatrészhez!',
+            'ar:required' => 'Kötelező árat hozzáadni!'
+        ]
+        );
 
         Parts::create($validate);
         $alkatreszek = Parts::paginate(10);
@@ -85,7 +92,13 @@ class PartsController extends Controller
             'edp' => 'required',
             'megnevezes' => 'required',
             'ar' => 'required'
-        ]);
+        ],
+        [
+            'edp:required' => 'Ez EDP kötelezően kitöltendő!',
+            'megnevezes:required' => 'Kötelező nevet adni az alkatrészhez!',
+            'ar:required' => 'Kötelező árat hozzáadni!'
+        ]
+        );
 
         Parts::findOrFail($id)->update($validate);
         $alkatreszek = Parts::paginate(10);

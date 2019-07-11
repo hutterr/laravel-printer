@@ -45,7 +45,7 @@ class CegekController extends Controller
         $cegData = request()->validate(
             [
             'cegnev' => 'required|unique:cegek,cegnev',
-            'adoszam' => 'required|min:11|numeric|unique:cegek,adoszam',
+            'adoszam' => 'unique:cegek,adoszam',
             'cim' => 'required',
             'telefon' => '',
             'kapcsolattarto' => '',
@@ -54,9 +54,6 @@ class CegekController extends Controller
             [
                 'cegnev.required' => 'A cégnév mező kötelezően kitöltendő!',
                 'cegnev.unique' => 'Ez a cégnév már szerepel a rendszerben!',
-                'adoszam.required' => 'Az adószám mező kötelezően kitöltendő!',
-                'adoszam.numeric' => 'Csak számot tartalmazhat!',
-                'adoszam.min' => 'Az adószámnak legalább 11 karakternek kell lennie!',
                 'adoszam.unique' => 'Ez az adószám már szerepel a rendszerben',
                 'cim.required' => 'A cím kötelezően kitöltendő mező!'
             ]
@@ -102,7 +99,7 @@ class CegekController extends Controller
         $cegData = request()->validate(
             [
             'cegnev' => 'required',
-            'adoszam' => 'required|min:11',
+            'adoszam' => '',
             'cim' => 'required',
             'telefon' => '',
             'kapcsolattarto' => '',
@@ -110,8 +107,6 @@ class CegekController extends Controller
             ],
             [
                 'cegnev.required' => 'A cégnév mező kötelezően kitöltendő!',
-                'adoszam.required' => 'Az adószám mező kötelezően kitöltendő!',
-                'adoszam.min' => 'Az adószámnak legalább 11 karakternek kell lennie!',
                 'cim.required' => 'A cím kötelezően kitöltendő mező!'
             ]
         );

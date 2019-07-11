@@ -13,7 +13,23 @@
 
         </div>
         <div class="card-body">
-            <form class="col-lg-11 mx-auto" action="/szamlalo" method="POST">         
+            <form class="col-lg-11 mx-auto" action="/szamlalo" method="POST">  
+                <div class="form-group row">
+                    <label for="printer_id" class="col-sm-2 col-form-label ">Gépszám</label>
+                    <div class="col-sm-10">
+                            <select class="form-control" id="printer_id" name="printer_id">
+                                @if($nyomtatok->count() == 0){
+                                    <option disabled>Még nincsenek nyomtatok...</option>
+                                }
+                                @else
+                                <option selected disabled>Válasszont nyomtatót!</option>
+                                    @foreach ($nyomtatok as $nyomtato)
+                                    <option value="{{$nyomtato->id}}" >{{$nyomtato->gepszam}}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                    </div>
+                </div>       
                 <div class="form-group row">
                         <label for="bejelentesi_datum" class="col-sm-2 col-form-label ">Bejelentési dátum</label>
                         <div class="col-sm-10">
@@ -34,22 +50,6 @@
                                 <input type="text" class="form-control" id="szines" name="szines" value="{{old('szines')}}">
                                 <small>{{$errors->first('szines')}}</small>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                                <label for="printer_id" class="col-sm-2 col-form-label ">Gépszám</label>
-                                <div class="col-sm-10">
-                                        <select class="form-control" id="printer_id" name="printer_id">
-                                            @if($nyomtatok->count() == 0){
-                                                <option disabled>Még nincsenek nyomtatok...</option>
-                                            }
-                                            @else
-                                            <option selected disabled>Válasszont nyomtatót!</option>
-                                                @foreach ($nyomtatok as $nyomtato)
-                                                <option value="{{$nyomtato->id}}" >{{$nyomtato->gepszam}}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                </div>
                         </div>
                         <div class="row justify-content-center my-3">
                                 <button type="submit" class="btn btn-primary col-lg-2">Rögzités</button>                    
