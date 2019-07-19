@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
             'jog' => 'user',
         ]);
         DB::table('users')->insert([
-            'name' => 'Szentes Tmás',
+            'name' => 'Szentes Tamás',
             'email' =>'szentes.tamas@masterpartner.hu',
             'password' => bcrypt('tamas3'),
             'jog' => 'user',
